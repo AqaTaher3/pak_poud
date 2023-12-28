@@ -1,0 +1,26 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+</h1>
+
+<h1> Host : {{Customer.name}}</h1> 
+
+<hr>
+
+<div>
+    <p> Description : {{Customer.address}}</p> 
+</div>
+
+<hr>
+<small> Updated : {{Customer.name}}</small> 
+<hr>
+<h2> Customer_id : {{Customer.id}}</h2> <br>
+<hr>
+<h3>
+<a href = "{% url 'customers:delete-customer'  Customer.id %}"> Delete Customer </a> <br><hr>
+<a href="{% url 'customers:update-customer' Customer.id %}"> Update</a> <br>
+</h3>
+
+
+{% endblock content %}
