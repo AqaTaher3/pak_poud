@@ -15,11 +15,13 @@
 
     <div> 
         <h5> {{tede_moshtari}} moshtri vojood darad </h5>
-        <a href="{% customer:create %}"> afzoodane moshtari</a> 
+
+
+        <a href="{% url 'customer:create' %}"> Moshtari Jadid </a> 
         <br>
-        <a href = "{% url 'customer:create' %}"> Create another Room </a>
+        <a href = "{% url 'chek:create' %}"> Chek Sayadi Jadid </a>
     <br><hr>
-        <h3>browse topic</h3> <hr>
+    <a href = "{% url 'customer:home' %}"> kole moshtari ha </a>  <hr>
 
     </div><hr>
 

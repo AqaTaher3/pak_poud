@@ -14,5 +14,5 @@ def home(request):
     kole_moshtari_ha = Moshtary.objects.all()
     customer_count = Moshtary.objects.all().count()
     tede_moshtari = 15
-    content = ({'kole_moshtari_ha': kole_moshtari_ha, 'tede_moshtari':tede_moshtari})
+    content = ({'kole_moshtari_ha': kole_moshtari_ha, 'tede_moshtari':customer_count})
     return render(request, 'home0/home.html', content)

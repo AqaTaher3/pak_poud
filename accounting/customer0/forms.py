@@ -10,7 +10,7 @@ class CreateMoshtaryForm(ModelForm):
         fields = "__all__"
 
 
-class UpdateChekForm(forms.Form):
+class UpdateMoshtariForm(forms.Form):
     class Meta:
         model = Moshtary
         fields = "__all__"
