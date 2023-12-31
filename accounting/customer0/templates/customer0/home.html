@@ -17,7 +17,8 @@
 
     <br><hr>
     {% for moshtari in moshtari_ha %}
-        <a href = "{% url 'customer:profile' moshtari.id %}"> {{moshtari.name}} </a> <br>
+        <h2> <a href = "{% url 'customer:profile' moshtari.id %}"> {{moshtari.name}} </a> <br> </h2>
+        <h1>{{moshtari.shomare}}</h1>  <br>
         {{moshtari.shomare}} </a> <br>
         {{moshtari.address}} </a> <br>
         <a href = "{% url 'customer:update' moshtari.id %}"> updated moshtari : </a><br>
@@ -29,19 +30,7 @@
 
     <hr>
     
-    <div>
-        <div>
-            <!-- {% for room in rooms %}
-            <div> 
 
-                <span style="color:blue;font-weight:bold">{{room.host.username}}</span>
-                <h5> {{room.id}} -<a href="/room/{{room.id}}" > </h5>
-                <small>topic -- {{room.topic.name}}</small> <hr>
-            </div>
-            {% endfor %} -->
-            
-        </div>
-    </div>
 
 
 <hr>

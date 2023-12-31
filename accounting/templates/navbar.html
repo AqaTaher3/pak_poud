@@ -3,11 +3,15 @@
     LOgo
 </h1>
 
+<a href = "{% url 'customer:create' %}"> Moshtari Jadid </a> <br>
+<a href = "{% url 'chek:create' %}"> Chek Sayadi Jadid </a>    <br><hr>
+
 </a>
 
 <form method="GET" action="{% url 'home:home' %}">
 
-    <input type="text" name="q" placeholder="Search Rooms ...  ">
+    <input type="text" name="customer" placeholder="Search customer ...  ">
+    <input type="text" name="sayad" placeholder="Search sayad ...  ">
 
 </form>
 

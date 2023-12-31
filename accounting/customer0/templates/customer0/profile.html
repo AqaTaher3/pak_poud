@@ -4,22 +4,12 @@
 {% block content %}
 </h1>
 
-<h1> Host : {{moshtari.name}}</h1> 
+<h1> name : {{customer.name}}</h1> 
 
-<hr>
 
-<div>
-    <p> Description : {{moshtari.address}}</p> 
-</div>
-
-<hr>
-<small> Updated : {{moshtari.name}}</small> 
-<hr>
-<h2> Moshtari_id : {{moshtari.id}}</h2> <br>
-<hr>
 <h3>
-<a href = "{% url 'customer:delete'  moshtari.id %}"> Delete Moshtari </a> <br><hr>
-<a href="{% url 'customer:update' moshtari.id %}"> Update Moshtari</a> <br>
+<a href = "{% url 'customer:delete'  customer.id %}"> Delete customer </a> <br><hr>
+<a href="{% url 'customer:update' customer.id %}"> Update customer</a> <br>
 </h3>
 
 

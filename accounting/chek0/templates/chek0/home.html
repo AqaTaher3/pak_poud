@@ -1,0 +1,42 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+<span style="color:rgb(228, 151, 18);font-weight:bold">Homee page</span><hr>
+
+<style>
+    .home-container {
+        display: grid;
+        grid-template-columns: 1fr 3fr ;
+    }
+    </style>
+
+<div class="home-container">
+
+    <div> 
+
+    <br><hr>
+    {% for chek in chek_ha %}
+        <a href = "{% url 'chek:profile' chek.id %}"> {{chek.shomare_sayad}} </a> <br>
+        {{chek.daftar}} </a> <br>
+        {{chek.mablag}} </a> <br>
+        <a href = "{% url 'chek:update' chek.id %}"> updated chek : </a><br>
+        <a href = "{% url 'chek:delete' chek.id %}"> delete chek : </a><hr>
+    {% endfor %}
+
+
+    </div><hr>
+
+
+
+<hr>
+
+
+<div>
+</div>
+
+
+
+{% endblock content %}
+
+

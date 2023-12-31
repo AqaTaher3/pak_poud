@@ -8,9 +8,3 @@ class CreateMoshtaryForm(ModelForm):
     class Meta:
         model = Moshtary
         fields = "__all__"
-
-
-class UpdateMoshtariForm(forms.Form):
-    class Meta:
-        model = Moshtary
-        fields = "__all__"

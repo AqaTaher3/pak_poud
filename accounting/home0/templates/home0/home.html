@@ -14,39 +14,21 @@
 <div class="home-container">
 
     <div> 
-        <h5> {{tede_moshtari}} moshtri vojood darad </h5>
+    <h5> {{tede_moshtari}} moshtri vojood darad </h5>
 
 
-        <a href="{% url 'customer:create' %}"> Moshtari Jadid </a> 
-        <br>
-        <a href = "{% url 'chek:create' %}"> Chek Sayadi Jadid </a>
-    <br><hr>
+
     <a href = "{% url 'customer:home' %}"> kole moshtari ha </a>  <hr>
+    <a href = "{% url 'chek:home' %}"> kole chek ha </a>  <hr>
 
     </div><hr>
 
-    <a href = "{% url 'home:home' %}"> All : </a>
+    <a href = "{% url 'customer:home' %}"> All : </a>
     <hr>
     <!-- {% for topic in topics %}
     <a href = "{% url 'base:home' %}?q={{topic.name}}  "> {{topic.name}} </a> <br>
     {% endfor %} -->
     
-    <div>
-        <div>
-            <!-- {% for room in rooms %}
-            <div> 
-                <a href = "{% url 'base:update-room' room.id %}"> updated room : </a>
-                <a href = "{% url 'base:delete-room' room.id %}"> delete room : </a>
-
-                <span style="color:blue;font-weight:bold">{{room.host.username}}</span>
-                <h5> {{room.id}} -<a href="/room/{{room.id}}" > </h5>
-                <small>topic -- {{room.topic.name}}</small> <hr>
-            </div>
-            {% endfor %} -->
-            
-        </div>
-    </div>
-
 
 <hr>
 

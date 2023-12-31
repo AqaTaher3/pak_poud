@@ -8,9 +8,3 @@ class CreateChekForm(ModelForm):
     class Meta:
         model = Chek
         fields = "__all__"
-
-
-class UpdateChekForm(forms.Form):
-    class Meta:
-        model = Chek
-        fields = "__all__"

@@ -2,21 +2,23 @@ from django.shortcuts import render, redirect, get_object_or_404
 from customer0.models import Moshtary
 from chek0.models import Chek
 from django.db.models import Q
-from .forms import CreateMoshtaryForm, UpdateMoshtariForm
+from .forms import CreateMoshtaryForm
 
 
 def kole_moshtari_ha(request):
 
     moshtari_ha = Moshtary.objects.all()
     customer_count = Moshtary.objects.all().count()
-    content = ({'moshtari_ha': moshtari_ha, 'tede_moshtari':customer_count})
+    content = ({'moshtari_ha': moshtari_ha, 'customer_count':customer_count})
     return render(request, 'customer0/home.html', content)
 
 
-def moshtari_profile(request, id):
-    moshtari = get_object_or_404(Moshtary, id=id)
-    content = {'moshtari': moshtari}
-    return render(request, 'cusotmer0/profile.html', content)
+
+def moshtari_profile(request, pk):
+    customer = get_object_or_404(Moshtary, id=pk)
+    content = {'customer': customer}
+    return render(request, 'customer0/profile.html', content)
+
 
 
 def create_moshtari(request):
@@ -25,7 +27,7 @@ def create_moshtari(request):
         form = CreateMoshtaryForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('home:home')
+            return redirect('customer:home')
         context = {'form': form}
         return render(request, 'customer0/create.html', context)
 
@@ -36,26 +38,28 @@ def create_moshtari(request):
         return render(request, "customer0/create.html", {"form": form})
 
 
+
 def update_moshtari(request, pk):
-    room = Moshtary.objects.get(id=pk)
-    form = UpdateMoshtariForm(instance=room)
+    customer = Moshtary.objects.get(pk=pk)
+    form = CreateMoshtaryForm(instance=customer)
     if request.method == "POST":
-        form = UpdateMoshtariForm(request.POST, instance=room)
+        form = CreateMoshtaryForm(request.POST, instance=customer)
         if form.is_valid():
             form.save()
-            return redirect('base:room', pk)
-        return redirect('base:update-room', pk)
+            return redirect('customer:home')
+        return redirect('customer:update', pk)
 
     else:
-        form = UpdateMoshtariForm(instance=room)
+        form = CreateMoshtaryForm(instance=customer)
         context = {'form': form}
-        UpdateMoshtariForm(instance=room)
-        return render(request, "base/update_form.html", context)
+        CreateMoshtaryForm(instance=customer)
+        return render(request, "customer0/update.html", context)
+
 
 
 def delete_moshtari(request, pk):
-    room = Moshtary.objects.get(id=pk)
+    customer = Moshtary.objects.get(id=pk)
     if request.method == 'POST':
-        room.delete()
-        return redirect('base:home')
-    return render(request, 'base/delete_room.html', {'obj':room})
+        customer.delete()
+        return redirect('customer:home')
+    return render(request, 'customer0/delete.html', {'customer':customer})
