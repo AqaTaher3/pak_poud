@@ -10,10 +10,11 @@ class Chek(models.Model):
     tarikh = models.CharField(max_length=15)
     mablag = models.CharField(max_length=20)
     kode_meli = models.CharField(max_length=20)
-    girande = models.CharField(max_length=100)
-    zi_naf = models.CharField(max_length=100)
+    magsad = models.CharField(max_length=100, null=True, blank=True)
     tarikhe_daryaft = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
+    ki_daryaft_kard = models.CharField(max_length=100, null=True, blank=True)
+    # ax = models.ImageField()
 
     class Meta:
         ordering = ['-shomare_sayad', ]

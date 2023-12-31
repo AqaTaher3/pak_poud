@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'home0.apps.Home0Config',
     'chek0.apps.Chek0Config',
     'customer0.apps.Customer0Config',
+    'factor0.apps.Factor0Config',
 ]
 
 MIDDLEWARE = [
