@@ -6,9 +6,9 @@ from customer0.models import Moshtary
 class Tage(models.Model):
     jens_parche = models.CharField(max_length=16, default='nil-bangal')
     rangrazi = models.CharField(max_length=30, default='sooper_derakhshan')
-    vazn = models.FloatField(blank=True, null=True)
-    metraj = models.FloatField(blank=True, default=120)
-    geymat = models.FloatField(null=True, blank=True)
+    vazn = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True)
+    metraj = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True, default=120)
+    geymat = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True, default=240)
 
     @property
     def Mablag_kol(self):
