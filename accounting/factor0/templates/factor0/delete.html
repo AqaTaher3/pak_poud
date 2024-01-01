@@ -1,0 +1,18 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+
+<form method="POST" action="">
+    
+    {% csrf_token %}
+    
+    <p>Are you sure delete :{{factor.name}} </p> 
+    <a href="{{request.META.HTTP_REFERE}}"> Go Back </a>
+    <a href="{% url 'factor:profile' factor.id %}"> Go Backk </a>
+    <input type="submit" value="Confirm" />
+
+</form>
+
+
+{% endblock content %}

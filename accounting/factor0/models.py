@@ -14,6 +14,7 @@ class Tage(models.Model):
 
 
 class FactorForoosh(models.Model):
+    shomare_factor = models.IntegerField(null=True, blank=True)
     kharidar = models.ManyToManyField(Moshtary)
     tage_ha = models.ManyToManyField(Tage)
     fee = models.IntegerField()
@@ -33,4 +34,4 @@ class FactorForoosh(models.Model):
         ordering = ['-tarikhe_foroosh', ]
 
     def __str__(self) -> str:
-        return str(self.kharidar.first()) + ' ' + str(self.tarikhe_foroosh)
+        return self.shomare_factor

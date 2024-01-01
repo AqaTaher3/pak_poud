@@ -2,7 +2,19 @@
 
 
 {% block content %}
-<span style="color:rgb(228, 151, 18);font-weight:bold">Homee page</span><hr>
+<span style="color:rgb(228, 151, 18);font-weight:bold">Cheks page</span><hr>
+
+
+<form method="GET" action="{% url 'chek:home' %}">
+
+    <input type="text" name="sayad" placeholder="Search shomare sayad ...  ">
+    <input type="text" name="daftar" placeholder="Search shomare daftar ...  "><br>
+    <input type="text" name="mablag" placeholder="Search mablag ...  ">
+    <input type="text" name="tarikh" placeholder="Search tarikh ...  ">
+
+</form>
+
+
 
 <style>
     .home-container {
@@ -18,10 +30,12 @@
     <br><hr>
     {% for chek in chek_ha %}
         <a href = "{% url 'chek:profile' chek.id %}"> {{chek.shomare_sayad}} </a> <br>
-        {{chek.daftar}} </a> <br>
-        {{chek.mablag}} </a> <br>
-        <a href = "{% url 'chek:update' chek.id %}"> updated chek : </a><br>
-        <a href = "{% url 'chek:delete' chek.id %}"> delete chek : </a><hr>
+         <h3> shomare daftar -> {{chek.daftar}} </h3>
+         <h3> Mablag -> {{chek.mablag}} </h3>
+         <h3> Tarikh -> {{chek.tarikh}} </h3>
+
+         <a href = "{% url 'chek:update' chek.id %}"> updated  </a>
+         <a href = "{% url 'chek:delete' chek.id %}"> delete  </a> <hr>
     {% endfor %}
 
 
