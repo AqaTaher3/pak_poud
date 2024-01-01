@@ -5,23 +5,23 @@ from django.db.models import Q
 from .forms import CreateMoshtaryForm
 
 
-def kole_moshtari_ha(request):
+def kole_customer_ha(request):
 
-    moshtari_ha = Moshtary.objects.all()
+    customers = Moshtary.objects.all()
     customer_count = Moshtary.objects.all().count()
-    content = ({'moshtari_ha': moshtari_ha, 'customer_count':customer_count})
+    content = ({'customers': customers, 'customer_count':customer_count})
     return render(request, 'customer0/home.html', content)
 
 
 
-def moshtari_profile(request, pk):
+def customer_profile(request, pk):
     customer = get_object_or_404(Moshtary, id=pk)
     content = {'customer': customer}
     return render(request, 'customer0/profile.html', content)
 
 
 
-def create_moshtari(request):
+def create_customer(request):
 
     if request.method == "POST":
         form = CreateMoshtaryForm(request.POST)
@@ -39,7 +39,7 @@ def create_moshtari(request):
 
 
 
-def update_moshtari(request, pk):
+def update_customer(request, pk):
     customer = Moshtary.objects.get(pk=pk)
     form = CreateMoshtaryForm(instance=customer)
     if request.method == "POST":
@@ -57,7 +57,7 @@ def update_moshtari(request, pk):
 
 
 
-def delete_moshtari(request, pk):
+def delete_customer(request, pk):
     customer = Moshtary.objects.get(id=pk)
     if request.method == 'POST':
         customer.delete()

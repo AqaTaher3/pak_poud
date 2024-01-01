@@ -1,27 +1,28 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import FactorForoosh
-from django.db.models import Q
-from .forms import CreateFactorForooshForm
+from .models import Foroosh
+from .forms import ForooshForm
 
 
 def kole_factor_ha(request):
-    kole_factor_ha = FactorForoosh.objects.all()
-    factor_count = kole_factor_ha.count()
-    content = {'kole_factor_ha': kole_factor_ha, 'factor_count':factor_count}
+
+    factors = Foroosh.objects.all()
+    factor_count = factors.count()
+    content = ({'factors': factors, 'factor_count':factor_count})
     return render(request, 'factor0/home.html', content)
 
 
 
 def factor_profile(request, id):
-    factor = get_object_or_404(FactorForoosh, id=id)
+    factor = get_object_or_404(Foroosh, id=id)
     content = {'factor': factor}
     return render(request, 'factor0/profile.html', content)
 
 
 
 def create_factor(request):
+
     if request.method == "POST":
-        form = CreateFactorForooshForm(request.POST)
+        form = ForooshForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('factor:home')
@@ -29,31 +30,33 @@ def create_factor(request):
         return render(request, 'create.html', context)
 
     else:
-        form = CreateFactorForooshForm()
-        return render(request, "create.html", {"form": form})
+
+        form = ForooshForm()
+        context = {'form': form}
+        return render(request, 'create.html', context)
 
 
 
 def update_factor(request, id):
-    factor = FactorForoosh.objects.get(id=id)
-    form = CreateFactorForooshForm(instance=factor)
+    factor = Foroosh.objects.get(id=id)
+    form = ForooshForm(instance=factor)
     if request.method == "POST":
-        form = CreateFactorForooshForm(request.POST, instance=factor)
+        form = ForooshForm(request.POST, instance=factor)
         if form.is_valid():
             form.save()
             return redirect('factor:home')
         return redirect('factor:update', id)
 
     else:
-        form = CreateFactorForooshForm(instance=factor)
+        form = ForooshForm(instance=factor)
         context = {'form': form}
-        CreateFactorForooshForm(instance=factor)
+        ForooshForm(instance=factor)
         return render(request, "update.html", context)
 
 
 
 def delete_factor(request, id):
-    factor = FactorForoosh.objects.get(id=id)
+    factor = Foroosh.objects.get(id=id)
     if request.method == 'POST':
         factor.delete()
         return redirect('factor:home')

@@ -16,13 +16,13 @@
     <div> 
 
     <br><hr>
-    {% for moshtari in moshtari_ha %}
-        <h2> <a href = "{% url 'customer:profile' moshtari.id %}"> {{moshtari.name}} </a> <br> </h2>
+    {% for customer in customers %}
+        <h2> <a href = "{% url 'customer:profile' customer.id %}"> {{customer.name}} </a> <br> </h2>
         <h1>{{moshtari.shomare}}</h1>  <br>
-        {{moshtari.shomare}} </a> <br>
-        {{moshtari.address}} </a> <br>
-        <a href = "{% url 'customer:update' moshtari.id %}"> updated moshtari : </a><br>
-        <a href = "{% url 'customer:delete' moshtari.id %}"> delete moshtari : </a><hr>
+        {{customer.shomare}} </a> <br>
+        {{customer.address}} </a> <br>
+        <a href = "{% url 'customer:update' customer.id %}"> updated moshtari : </a><br>
+        <a href = "{% url 'customer:delete' customer.id %}"> delete moshtari : </a><hr>
     {% endfor %}
 
 

@@ -16,7 +16,7 @@
     <div> 
 
     <br><hr>
-    {% for factor in kole_factor_ha %}
+    {% for factor in factors %}
         <a href = "{% url 'factor:profile' factor.id %}"> {{factor.shomare_factor}} </a> <br>
          <h3> fee  -> {{factor.fee}} </h3>
          <h3> tarikhe_foroosh -> {{factor.tarikhe_foroosh}} </h3>

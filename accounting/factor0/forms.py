@@ -1,10 +1,10 @@
 from django import forms
 
 from django.forms import ModelForm
-from .models import FactorForoosh
+from .models import Foroosh
 
 
-class CreateFactorForooshForm(ModelForm):
+class ForooshForm(ModelForm):
     class Meta:
-        model = FactorForoosh
-        fields = "__all__"
+        model = Foroosh
+        fields = ["shomare_factor", "kharidar", "tage",]
