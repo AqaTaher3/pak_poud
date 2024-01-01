@@ -29,13 +29,13 @@ def create_moshtari(request):
             form.save()
             return redirect('customer:home')
         context = {'form': form}
-        return render(request, 'customer0/create.html', context)
+        return render(request, 'create.html', context)
 
     else:
 
         form = CreateMoshtaryForm()
 
-        return render(request, "customer0/create.html", {"form": form})
+        return render(request, "create.html", {"form": form})
 
 
 
@@ -53,7 +53,7 @@ def update_moshtari(request, pk):
         form = CreateMoshtaryForm(instance=customer)
         context = {'form': form}
         CreateMoshtaryForm(instance=customer)
-        return render(request, "customer0/update.html", context)
+        return render(request, "update.html", context)
 
 
 
@@ -62,4 +62,4 @@ def delete_moshtari(request, pk):
     if request.method == 'POST':
         customer.delete()
         return redirect('customer:home')
-    return render(request, 'customer0/delete.html', {'customer':customer})
+    return render(request, 'delete.html', {'customer':customer})

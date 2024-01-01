@@ -1,52 +1,46 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+.row {
+  display: flex;
+}
+
+/* Create two equal columns that sits next to each other */
+.column {
+  flex: 50%;
+  padding: 10px;
+  height: 180px; /* Should be removed. Only for demonstration */
+}
+</style>
+
+
 {% extends 'main.html' %}
 
-
 {% block content %}
-<span style="color:rgb(228, 151, 18);font-weight:bold">Homee page</span><hr>
 
-<style>
-    .home-container {
-        display: grid;
-        grid-template-columns: 1fr 3fr ;
-    }
-    </style>
 
-<div class="home-container">
+<div class="row">
+  <div class="column" style="background-color:#aaa;">
 
-    
-</div><hr>
-
-<a href = "{% url 'customer:home' %}"> All : </a>
-<hr>
-    <div> 
-    
-    
-    <h5> {{tede_moshtari}} moshtri vojood darad </h5>
-   
-
-    <h1 style="background-color:#21af80;">
+    <h2 style="background-color:hsl(219, 41%, 46%);">
         <a href = "{% url 'customer:home' %}"> kole moshtari ha </a>  <hr>
         <a href = "{% url 'chek:home' %}"> kole chek ha </a>  <hr>
-    </h1>
+        <a href = "{% url 'factor:home' %}"> kole factor ha </a>  <hr>
+    </h2>
 
-    
-    <h1 style="background-color:DodgerBlue;">
+  </div>
+  <div class="column" style="background-color:#bbb;">
+    <h2 style="background-color:#1db97d;">
         <a href = "{% url 'customer:create' %}"> Moshtari Jadid </a> <hr>
         <a href = "{% url 'chek:create' %}"> Chek Sayadi Jadid </a> <hr>
-    </h1>
-
-
-    <h1 style="background-color:DodgerBlue;">
         <a href = "{% url 'factor:create' %}"> Factor Jadid </a> <hr>
-    </h1>
+    </h2>
 
-    
-<hr>
-
-
-<div>
+  </div>
 </div>
-
 
 
 {% endblock content %}
