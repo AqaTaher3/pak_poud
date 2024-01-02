@@ -39,6 +39,9 @@ class Foroosh(models.Model):
     class Meta:
         ordering = ['-shomare_factor', ]
 
+    def __str__(self) -> str:
+        return str(self.shomare_factor) +"---"+ str(self.kharidar) 
+
 
 @receiver(pre_save, sender=Foroosh)
 def calculate_total(sender, instance, created=False , **kwargs):

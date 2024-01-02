@@ -19,4 +19,4 @@ class Chek(models.Model):
         ordering = ['-shomare_sayad', ]
 
     def __str__(self) -> str:
-        return self.daftar
+        return str(self.daftar)

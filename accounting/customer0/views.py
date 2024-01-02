@@ -12,12 +12,15 @@ def kole_customer_ha(request):
     content = ({'customers': customers, 'customer_count':customer_count})
     return render(request, 'customer0/home.html', content)
 
-
+# ki_daryaft_kard is Not blank
 
 def customer_profile(request, pk):
     customer = get_object_or_404(Moshtary, id=pk)
-    cusotmers_cheks= Chek.objects.filter(tahvil_dahande = customer)
-    content = {'customer': customer, 'cusotmers_cheks':cusotmers_cheks}
+    customer_cheks= Chek.objects.filter(tahvil_dahande = customer)
+    chek_count= Chek.objects.filter(tahvil_dahande = customer).count()
+    chek_be_nam_nashode= Chek.objects.filter(Q(tahvil_dahande = customer) &  (Q(ki_daryaft_kard__exact='') | Q(ki_daryaft_kard__isnull=True)))
+    be_nam_nashode = chek_be_nam_nashode.count()
+    content = {'customer':customer, 'chek_count':chek_count, 'be_nam_nashode':be_nam_nashode}
     return render(request, 'customer0/profile.html', content)
 
 
