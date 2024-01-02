@@ -4,6 +4,7 @@ from django.forms import ModelForm
 from .models import Foroosh
 
 
+
 class ForooshForm(ModelForm):
     class Meta:
         model = Foroosh

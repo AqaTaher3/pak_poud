@@ -2,21 +2,15 @@
 
 
 {% block content %}
-</h1>
 
-<h1> kharidar : {{factor.kharidar}}</h1> 
+<h1> shomare_factor : {{factor.shomare_factor}}</h1>
+<h1> kharidar : {{factor.kharidar}}</h1>
+<h1> tage : {{factor.tage}}</h1>
+<h1> tarikhe_foroosh : {{factor.tarikhe_foroosh}}</h1>
+<h1> total : {{factor.total}}</h1>
+<h1> updated : {{factor.updated}}</h1>
 
-<hr>
 
-<div>
-    <p> Jame_kol : {{factor.Jame_kol}}</p> 
-</div>
-
-<hr>
-<small> Updated : {{factor.updated}}</small> 
-<hr>
-<h2> factor_id : {{factor.id}}</h2> <br>
-<hr>
 <h3>
 <a href = "{% url 'factor:delete'  factor.id %}"> Delete factor </a> <br><hr>
 <a href="{% url 'factor:update' factor.id %}"> Update factor</a> <br>

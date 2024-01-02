@@ -16,7 +16,8 @@ def kole_customer_ha(request):
 
 def customer_profile(request, pk):
     customer = get_object_or_404(Moshtary, id=pk)
-    content = {'customer': customer}
+    cusotmers_cheks= Chek.objects.filter(tahvil_dahande = customer)
+    content = {'customer': customer, 'cusotmers_cheks':cusotmers_cheks}
     return render(request, 'customer0/profile.html', content)
 
 

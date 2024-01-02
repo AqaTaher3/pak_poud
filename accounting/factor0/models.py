@@ -22,7 +22,7 @@ class Tage(models.Model):
         ordering = ['-jens_parche', '-vazn', '-metraj', ]
 
     def __str__(self) -> str:
-        return self.vazn
+        return str(self.vazn)
 
 
 class Foroosh(models.Model):
@@ -31,6 +31,7 @@ class Foroosh(models.Model):
     tage = models.ManyToManyField(Tage, null=True, blank=True)
     tarikhe_foroosh = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
+    total = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True, default=240)
 
     def get_total(self):
         return self.tage.Mablag_kol
@@ -40,8 +41,12 @@ class Foroosh(models.Model):
 
 
 @receiver(pre_save, sender=Foroosh)
-def calculate_total(sender, instance, **kwargs):
-    total = 0
-    for tage in instance.tage.all():
-        total += tage.Mablag_kol
-    instance.total = total
+def calculate_total(sender, instance, created=False , **kwargs):
+    if created:
+        total = 0
+        instance.save()
+
+        for tage in instance.tage.all():
+            total += tage.Mablag_kol
+        instance.total = total
+        instance.save()  # ذخیره تغییرات

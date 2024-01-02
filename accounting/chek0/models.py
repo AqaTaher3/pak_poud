@@ -3,8 +3,7 @@ from customer0.models import Moshtary
 # Create your models here.
 
 class Chek(models.Model):
-    tahvil_dahande = models.ForeignKey(Moshtary, null=True,
-                                       on_delete=models.SET_NULL)
+    tahvil_dahande = models.ForeignKey(Moshtary, null=True, on_delete=models.SET_NULL)
     daftar = models.IntegerField()
     shomare_sayad = models.CharField(max_length=16)
     tarikh = models.CharField(max_length=15)

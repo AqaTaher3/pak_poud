@@ -1,0 +1,46 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+.row {
+  display: flex;
+}
+
+/* Create two equal columns that sits next to each other */
+.column {
+  flex: 50%;
+  padding: 10px;
+  height: 180px; /* Should be removed. Only for demonstration */
+}
+</style>
+
+
+{% extends 'main.html' %}
+
+{% block content %}
+
+
+<div class="row">
+  <div class="column" style="background-color:#aaa;">
+
+    <h2 style="background-color:hsl(219, 41%, 46%);">
+        <a href = "{% url 'customer:home' %}"> kole moshtari ha </a>  <hr>
+        <a href = "{% url 'chek:home' %}"> kole chek ha </a>  <hr>
+        <a href = "{% url 'factor:home' %}"> kole factor ha </a>  <hr>
+    </h2>
+
+  </div>
+  <div class="column" style="background-color:#bbb;">
+    <h2 style="background-color:#1db97d;">
+        <a href = "{% url 'customer:create' %}"> Moshtari Jadid </a> <hr>
+        <a href = "{% url 'chek:create' %}"> Chek Sayadi Jadid </a> <hr>
+        <a href = "{% url 'factor:create' %}"> Factor Jadid </a> <hr>
+    </h2>
+
+  </div>
+</div>
+
+{% endblock content %}
+

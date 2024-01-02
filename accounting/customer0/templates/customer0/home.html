@@ -1,43 +1,162 @@
 {% extends 'main.html' %}
-
-
 {% block content %}
-<span style="color:rgb(228, 151, 18);font-weight:bold">Cutomers page</span><hr>
 
 <style>
-    .home-container {
-        display: grid;
-        grid-template-columns: 1fr 3fr ;
+    .button {
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
     }
-    </style>
+</style>
 
-<div class="home-container">
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+/* Style the buttons */
+.btn {
+  border: none;
+  outline: none;
+  padding: 12px 16px;
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #ddd;
+}
+
+.btn.active {
+  background-color: #666;
+  color: white;
+}
+</style>
+</head>
+<body>
+
+<h2>List View or Grid View</h2>
+
+<p>Click on a button to choose list view or grid view.</p>
+
+<div id="btnContainer">
+  <button class="btn" onclick="listView()"><i class="fa fa-bars"></i> List</button> 
+  <button class="btn active" onclick="gridView()"><i class="fa fa-th-large"></i> Grid</button>
+</div>
+<br>
+
+{% for customer in customers %}
+
+<div class="row">
+  <div class="column" style="background-color:#aaa;">
+    <h2>
+        Name
+    </h2>
+    <p><a href = "{% url 'customer:profile' customer.id %}"> {{customer.name}}</p>
+  </div>
+  <div class="column" style="background-color:#bbb;">
+    <h2>shomare</h2>
+    <p>{{customer.shomare}}</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="column" style="background-color:#ccc;">
+    <h2>address</h2>
+    <p>{{customer.address}}</p>
+  </div>
+  <div class="column" style="background-color:#ddd;">
+    <h2>address</h2>
+    <p>{{customer.address}}</p>
+  </div>
+</div>
+
+
+
+    <style>
+    .button1 {background-color: #04AA6D;}
+    .button2 {background-color: #e40909;}
+    </style>
+    
+
+    
+    <button class="button button1">
+        <a href = "{% url 'customer:update' customer.id %}"> updated </a>
+    </button>
+    <button class="button button2">
+        <a href = "{% url 'customer:delete' customer.id %}"> delete </a>
+    </button><hr>
+
+
+
+{% endfor %}
+<script>
+// Get the elements with class="column"
+var elements = document.getElementsByClassName("column");
+
+// Declare a loop variable
+var i;
+
+// List View
+function listView() {
+  for (i = 0; i < elements.length; i++) {
+    elements[i].style.width = "100%";
+  }
+}
+
+// Grid View
+function gridView() {
+  for (i = 0; i < elements.length; i++) {
+    elements[i].style.width = "50%";
+  }
+}
+
+/* Optional: Add active class to the current button (highlight it) */
+var container = document.getElementById("btnContainer");
+var btns = container.getElementsByClassName("btn");
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function() {
+    var current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+  });
+}
+</script>
+
+</body>
+</html>
+
+
 
     <div> 
 
-    <br><hr>
-    {% for customer in customers %}
-        <h2> <a href = "{% url 'customer:profile' customer.id %}"> {{customer.name}} </a> <br> </h2>
-        <h1>{{moshtari.shomare}}</h1>  <br>
-        {{customer.shomare}} </a> <br>
-        {{customer.address}} </a> <br>
-        <a href = "{% url 'customer:update' customer.id %}"> updated moshtari : </a><br>
-        <a href = "{% url 'customer:delete' customer.id %}"> delete moshtari : </a><hr>
-    {% endfor %}
-
-
     </div><hr>
 
-    <hr>
-    
 
 
-
-<hr>
-
-
-<div>
-</div>
 
 
 
