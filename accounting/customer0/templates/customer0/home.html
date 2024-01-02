@@ -13,12 +13,10 @@
       margin: 4px 2px;
       cursor: pointer;
     }
-</style>
+    </style>
 
-<!DOCTYPE html>
-<html>
-<head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <style>
 * {
   box-sizing: border-box;
@@ -31,7 +29,6 @@
   padding: 10px;
 }
 
-/* Clear floats after the columns */
 .row:after {
   content: "";
   display: table;
@@ -55,8 +52,12 @@
   color: white;
 }
 </style>
-</head>
-<body>
+
+<style>
+  .button1 {background-color: #04AA6D;}
+  .button2 {background-color: #e40909;}
+  </style>
+
 
 <h2>List View or Grid View</h2>
 
@@ -94,23 +95,14 @@
   </div>
 </div>
 
-
-
-    <style>
-    .button1 {background-color: #04AA6D;}
-    .button2 {background-color: #e40909;}
-    </style>
-    
-
-    
-    <button class="button button1">
-        <a href = "{% url 'customer:update' customer.id %}"> updated </a>
-    </button>
-    <button class="button button2">
-        <a href = "{% url 'customer:delete' customer.id %}"> delete </a>
-    </button><hr>
-
-
+<div>
+  <button class="button button1">
+      <a href = "{% url 'customer:update' customer.id %}"> updated </a>
+  </button>
+  <button class="button button2">
+      <a href = "{% url 'customer:delete' customer.id %}"> delete </a>
+  </button>
+</div><hr>
 
 {% endfor %}
 <script>

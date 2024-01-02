@@ -2,42 +2,26 @@
 
 
 {% block content %}
+
+
 <span style="color:rgb(228, 151, 18);font-weight:bold">Cheks page</span><hr>
 
 
-<style>
-    .home-container {
-        display: grid;
-        grid-template-columns: 1fr 3fr ;
-    }
-    </style>
+<div> 
 
-<div class="home-container">
+<br><hr>
+{% for chek in chek_ha %}
+    <a href = "{% url 'chek:profile' chek.id %}"> {{chek.shomare_sayad}} </a> <br>
+        <h3> shomare daftar -> {{chek.daftar}} </h3>
+        <h3> Mablag -> {{chek.mablag}} </h3>
+        <h3> Tarikh -> {{chek.tarikh}} </h3>
 
-    <div> 
-
-    <br><hr>
-    {% for chek in chek_ha %}
-        <a href = "{% url 'chek:profile' chek.id %}"> {{chek.shomare_sayad}} </a> <br>
-         <h3> shomare daftar -> {{chek.daftar}} </h3>
-         <h3> Mablag -> {{chek.mablag}} </h3>
-         <h3> Tarikh -> {{chek.tarikh}} </h3>
-
-         <a href = "{% url 'chek:update' chek.id %}"> updated  </a>
-         <a href = "{% url 'chek:delete' chek.id %}"> delete  </a> <hr>
-    {% endfor %}
+        <a href = "{% url 'chek:update' chek.id %}"> updated  </a>
+        <a href = "{% url 'chek:delete' chek.id %}"> delete  </a> <hr>
+{% endfor %}
 
 
-    </div><hr>
-
-
-
-<hr>
-
-
-<div>
-</div>
-
+</div><hr>
 
 
 {% endblock content %}

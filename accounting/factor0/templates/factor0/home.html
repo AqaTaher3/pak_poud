@@ -1,24 +1,25 @@
 {% extends 'main.html' %}
+
 {% block content %}
 
 
 <span style="color:rgb(228, 151, 18);font-weight:bold">factor page</span><hr>
 
 
-<div class="home-container">
 
-    {% for factor in factors %}   
-        <h3 style="background-color:#848992;">  
-        <a href = "{% url 'factor:profile' factor.id %}"> Factor number : {{factor.shomare_factor}} </a> <hr>
-        
-        kharidar :  <a href = "{% url 'customer:profile' factor.kharidar.id %}"> {{factor.kharidar}} </a> <hr>
-        tarikhe : {{factor.tarikhe_foroosh}} <br>
-        <a href = "{% url 'factor:update' factor.id %}"> updated  </a>
-        <a href = "{% url 'factor:delete' factor.id %}"> delete  </a> <hr>
-        </h3>
-    {% endfor %}
 
-</div>
+{% for factor in factors %}   
+    <h3 style="background-color:#848992;">  
+    <a href = "{% url 'factor:profile' factor.id %}"> Factor number : {{factor.shomare_factor}} </a> <hr>
+    
+    kharidar :  <a href = "{% url 'customer:profile' factor.kharidar.id %}"> {{factor.kharidar}} </a> <hr>
+    tarikhe : {{factor.tarikhe_foroosh}} <br>
+    <a href = "{% url 'factor:update' factor.id %}"> updated  </a>
+    <a href = "{% url 'factor:delete' factor.id %}"> delete  </a> <hr>
+    </h3>
+{% endfor %}
+
+
 
 
 {% endblock content %}
