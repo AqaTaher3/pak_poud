@@ -1,11 +1,18 @@
-form method="GET" action="">
+<form method="GET" action="">
 
-    <input type="text" name="customer" placeholder="Search customer ...  ">
-    <input type="text" name="sayad" placeholder="Search sayad ...  ">
-    <input type="text" name="sayad" placeholder="Search shomare sayad ...  ">
-    <input type="text" name="daftar" placeholder="Search shomare daftar ...  "><br>
-    <input type="text" name="mablag" placeholder="Search mablag ...  ">
-    <input type="text" name="tarikh" placeholder="Search tarikh ...  ">
+    <input type="text" name="customer" placeholder="Search customer9 ...">
+    <input type="text" name="sayad" placeholder="Search sayad9 ...">
+    {% if request.path|slice:"9" == "/customer" %}
+        <input type="text" name="customer_name" placeholder="Search customer name000 ...">
+    {% elif request.path|slice:"5" == "/chek" %}
+        <input type="text" name="shomare_sayad" placeholder="Search tarikh1 ...">
+        <input type="text" name="shomare_daftar" placeholder="shomare to daftar1 ...">
+    {% elif request.path|slice:"7" == "/factor" %}
+        <input type="text" name="shomare_factor" placeholder="Search shomare factor3 ...">
+    {% endif %}
 
+    <br>
+    <input type="submit" value="Search">
 
-</form><hr>
+</form>
+<hr>

@@ -1,36 +1,17 @@
-<body style="background-color:#8f8e5f">
+<h1 style="background-color:#b1c82d;"><a href="/">Main Page</a></h1>
 
+<div style="display: flex;">
 
-<h1 style="background-color:#b1c82d;">  <a href= "/"> Main Page </a> 
+    <div class="column" style="background-color:hsl(219, 41%, 46%); flex: 1; font-size: 20px; color: white; padding: 10px;">
+        <a href="{% url 'customer:home' %}" style="color: rgb(46, 43, 43); text-decoration: none;">kole moshtari ha</a><hr>
+        <a href="{% url 'chek:home' %}" style="color: white; text-decoration: none;">kole chek ha</a><hr>
+        <a href="{% url 'factor:home' %}" style="color: white; text-decoration: none;">kole factor ha</a><hr>
+    </div>
 
-<div class="row">
-  <div class="column" style="background-color:#aaa;">
+    <div class="column" style="background-color:#1db97d; flex: 1; font-size: 20px; color: white; padding: 10px;">
+        <a href="{% url 'customer:create' %}" style="color: white; text-decoration: none;">Moshtari Jadid</a><hr>
+        <a href="{% url 'chek:create' %}" style="color: white; text-decoration: none;">Chek Sayadi Jadid</a><hr>
+        <a href="{% url 'factor:create' %}" style="color: white; text-decoration: none;">Factor Jadid</a><hr>
+    </div>
 
-    <h3 style="background-color:hsl(219, 41%, 46%);">
-        <a href = "{% url 'customer:home' %}"> kole moshtari ha </a>  <hr>
-        <a href = "{% url 'chek:home' %}"> kole chek ha </a>  <hr>
-        <a href = "{% url 'factor:home' %}"> kole factor ha </a>  <hr>
-    </h3>
-
-  </div>
-  <div class="column" style="background-color:#bbb;">
-    <h3 style="background-color:#1db97d;">
-        <a href = "{% url 'customer:create' %}"> Moshtari Jadid </a> <hr>
-        <a href = "{% url 'chek:create' %}"> Chek Sayadi Jadid </a> <hr>
-        <a href = "{% url 'factor:create' %}"> Factor Jadid </a> <hr>
-    </h3>
-
-  </div>
 </div>
-
-</h1>
-
-
-
-
-
-
-
-
-
-
