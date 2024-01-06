@@ -17,7 +17,7 @@ class Moshtary(models.Model):
     sagfe_etebar = models.CharField(max_length=16)
 
     class Meta:
-        ordering = ['-name', ]
+        ordering = ['name', ]
 
     def __str__(self) -> str:
         return self.name[0:50]
@@ -26,7 +26,7 @@ class ZiNaf(models.Model):
     name = models.CharField(max_length=50)
     hagigi_or_hogogi = models.CharField(max_length=16, choices =choices)
     kode_meli = models.CharField(max_length=11)
-    
+
     class Meta:
         ordering = ['-name', ]
 

@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+# from customer0.urls import cutomer
 
 app_name = 'chek'
 urlpatterns = [

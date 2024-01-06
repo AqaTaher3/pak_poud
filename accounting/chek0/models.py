@@ -16,7 +16,7 @@ class Chek(models.Model):
     # ax = models.ImageField()
 
     class Meta:
-        ordering = ['-shomare_sayad', ]
+        ordering = ['-daftar', ]
 
     def __str__(self) -> str:
         return str(self.daftar)
