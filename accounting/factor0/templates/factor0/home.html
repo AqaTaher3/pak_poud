@@ -2,43 +2,34 @@
 {% block content %}
 
 {% comment %} {% endcomment %}
-<style>
-    .button1 {background-color: #04AA6D;}
-    .button2 {background-color: #e40909;}
-    .customer{
-        background-color:hsl(130, 38%, 85%); flex: 1; font-size: 20px; color: rgb(60, 68, 62); padding: 10px;
-    }
-    #page{
-        color:rgb(228, 151, 18);font-weight:bold
-    }
-</style>
 
+<table class="table table-success table-striped">
+    <thead>
+      <tr>
+        <th scope="col">factor_id</th>
+        <th scope="col">shomare_factor</th>
+        <th scope="col">tahvil_dahande </th>
+        <th scope="col">tarikhe_foroosh </th>
+        <th scope="col">kole_factor</th>
+        <th scope="col">tasvie shod ?</th>
+      </tr>
+    </thead>
+    <tbody>
 
+        {% for factor in factors %}
+        <tr>
+            <th scope="row">{{factor.id}}</th>
+            <td>@<a href = "{% url 'factor:profile' factor.id %}" > {{factor.shomare_factor}} </td>
+            <td>@<a href = "{% url 'customer:profile' factor.kharidar.id %}" > {{factor.kharidar}} </td>
+            <td>{{factor.tarikhe_foroosh}}</td>
+            <td>{{factor.Mablag_kol}}</td>
+            <td>{{factor.baste_shod}}</td>
+        </tr>
+        {% endfor %}
 
+    </tbody>
 
-<h1 id="page">
-    factor page
-</h1>
-<h2>shomare akharin factor -- {{last_factor}} </h2>
+</table>
 
-
-{% for factor in factors %}
-<div class="customer">
-
-    <a href = "{% url 'factor:profile' factor.id %}"> Factor number : {{factor.shomare_factor}} </a> <br>
-    kharidar :  <a href = "{% url 'customer:profile' factor.kharidar.id %}"> {{factor.kharidar}} </a> <br>
-    tarikhe : {{factor.tarikhe_foroosh}} <br>
-    sum : {{factor.Mablag_kol}} <br>
-
-</div>
-<div>
-    <button class="button1">
-        <a href = "{% url 'factor:update' factor.id %}"> updated  </a><br>
-    </button>
-    <button class="button2">
-        <a href = "{% url 'factor:delete' factor.id %}"> delete  </a>
-    </button><hr>
-</div>
-{% endfor %}
 
 {% endblock content %}

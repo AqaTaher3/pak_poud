@@ -18,23 +18,33 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'chek:home' %}">Chek ha</a>
           </li>
-          <li class="nav-item dropdown">
+
+        </li>
+        <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">New</a>
 
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="{% url 'customer:create' %}">new customer</a></li>
+                <li><a class="dropdown-item" href="{% url 'customer:create' %}">new customer</a></li>
               <li><a class="dropdown-item" href="{% url 'chek:create' %}">Chek Sayadi Jadid</a></li>
               <li><a class="dropdown-item" href="{% url 'factor:create' %}">Factor Jadid</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="#">Something else here</a></li>
             </ul>
-          </li>
-          <li class="nav-item">
+        </li>
+        <li class="nav-item">
             <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-          </li>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'customer:create' %}">new customer</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'chek:create' %}">Chek Sayadi Jadid</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'factor:create' %}">Factor Jadid</a>
         </ul>
         <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" >
+          <input class="form-control me-2" type="search" placeholder="Search all ..." aria-label="Search" >
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
       </div>

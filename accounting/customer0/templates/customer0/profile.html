@@ -2,25 +2,22 @@
 
 
 {% block content %}
-</h1>
 
-<h1> name : {{customer.name}}</h1>
-<h1> shomare : {{customer.shomare}}</h1>
-<h1> address : {{customer.address}}</h1>
-<h1> hesab baz : {{customer.name}}</h1>
-<h1> tede kole chek haye be nam nashode : {{customer.name}}</h1>
-<h1> hesab kol : {{customer.name}}</h1>
-
-
+<h3>
+name : {{customer.name}}<hr>
+shomare : {{customer.shomare}}<hr>
+address : {{customer.address}}<hr>
+hesab baz : {{customer.name}}<hr>
+hesab kol : {{customer.name}}<hr>
 kole_chek_ha  :  {{chek_count}} <hr>
 be_nam_nashode  :  {{be_nam_nashode}}
-
-
+tede kole chek haye be nam nashode : {{customer.name}}<hr>
+</h3>
 
 
 <h3>
-<a href = "{% url 'customer:delete'  customer.id %}"> Delete customer </a> <br><hr>
-<a href="{% url 'customer:update' customer.id %}"> Update customer</a> <br>
+<a href = "{% url 'customer:delete'  customer.id %}"> Delete customer </a> <br>
+<a href="{% url 'customer:update' customer.id %}"> Update customer</a>
 </h3>
 
 

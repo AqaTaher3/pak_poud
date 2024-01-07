@@ -2,9 +2,12 @@ from django.db import models
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from customer0.models import Moshtary
+from chek0.models import Chek
 
-
-
+choices = [
+    ('baste' , 'baste'),
+    ('baz' , 'baz')
+]
 
 
 class Tage(models.Model):
@@ -26,6 +29,8 @@ class Foroosh(models.Model):
     kharidar = models.ForeignKey(Moshtary, on_delete=models.SET_NULL, null=True)
     tage = models.ManyToManyField(Tage, blank=True)
     geymat = models.DecimalField(max_digits=6, decimal_places=3, null=True, default=240)
+    baste_shod = models.CharField(max_length=16, choices =choices, null=True)
+    Hesab_daryafti = models.ForeignKey('Hesab_daryafti', on_delete=models.SET_NULL, blank= True, null=True)
     tarikhe_foroosh = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
 
@@ -47,24 +52,26 @@ class Foroosh(models.Model):
             total_price = float(self.metraj_kol) * float(self.geymat or 0)
         return total_price
 
-    # @property
-    # def sum_total_invoice(self):
-    #     total = sum(t.Mablag_kol for t in self.tage.all())
-    #     return total
+    @property
+    def albagi_hesab(self):
+        total_daryafti = (self.Hesab_daryafti.kole_daryafti or 0)
+        albagi = self.Mablag_kol - total_daryafti
+        return albagi
+
     class Meta:
         ordering = ['-shomare_factor', ]
         verbose_name_plural = "Factors"
     def __str__(self) -> str:
-        return str(self.shomare_factor) +"---"+ str(self.kharidar)
+        return str(self.shomare_factor) + str(self.id) + str(self.kharidar)
 
+class Hesab_daryafti(models.Model):
+    chek = models.ManyToManyField(Chek, null=True)
+    nagdi = models.IntegerField(blank=True, null=True)
+    daftari = models.IntegerField(blank=True, null=True)
+    tarikhe_daryaft = models.DateField(auto_now_add=True)
+    updated = models.DateField(auto_now=True)
 
-@receiver(pre_save, sender=Foroosh)
-def calculate_total(sender, instance, created=False , **kwargs):
-    if created:
-        total = 0
-        instance.save()
-
-        for tage in instance.tage.all():
-            total += tage.Mablag_kol
-        instance.total = total
-        instance.save()  # ذخیره تغییرات
+    @property
+    def kole_daryafti(self):
+        total_price = sum(int(t.mablag) or 0 for t in self.chek.all())
+        return total_price

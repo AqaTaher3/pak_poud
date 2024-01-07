@@ -1,72 +1,47 @@
 {% extends 'main.html' %}
 {% block content %}
 
-<style>
-    .chek_ha{
-        background-color:hsl(130, 38%, 85%); flex: 1; font-size: 20px; color: rgb(60, 68, 62); padding: 10px;
-    }
-    #page{
-        color:rgb(228, 151, 18);font-weight:bold
-    }
-    .button1 {background-color: #04AA6D; width: 170px; font-size: 16px; margin: 4px 2px; cursor: pointer;}
-    .button2 {background-color: #e40909; width: 170px; font-size: 16px; margin: 4px 2px; cursor: pointer;}
-    </style>
-<h1>
-    <span id="page">Cheks page</span><hr>
-</h1>
-<h2> tedade kole chek ha -- {{chek_count}}</h2>
 
-{% for chek in chek_ha %}
-<div class="chek_ha">
+<table class="table table-success table-striped">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">daftar</th>
+        <th scope="col">Saheb_chek </th>
+        <th scope="col">shomare-sayad </th>
+        <th scope="col">tarikh</th>
+        <th scope="col">mablag</th>
+        <th scope="col">kode_meli?</th>
+        <th scope="col">magsad</th>
+        <th scope="col">tarikhe_daryaft</th>
+        <th scope="col">ki_daryaft_kard</th>
+      </tr>
+    </thead>
+    <tbody>
 
-    shomare-sayad -- <a href = "{% url 'chek:profile' chek.id %}"> {{chek.shomare_sayad}} </a> <br>
-    tahvil dahande -- <a href = "{% url 'customer:profile' chek.tahvil_dahande.id %}" > {{chek.tahvil_dahande}} </a> <br>
-    shomare daftar -- {{chek.daftar}} <br>
-    Mablag -- {{chek.mablag}} milion toman <br>
-    Tarikh -- {{chek.tarikh}}<br>
-</div>
-<div>
-    <button class="button1">
-        <a href = "{% url 'chek:update' chek.id %}"> updated  </a><br>
-    </button>
-    <button class="button2">
-        <a href = "{% url 'chek:delete' chek.id %}"> delete  </a>
-    </button><hr>
-    </div>
-{% endfor %}
+        {% for chek in chek_ha %}
+        <tr>
+            <th scope="row">{{chek.id}}</th>
+            <td>@{{chek.daftar}}</td>
+            <td>@<a href = "{% url 'customer:profile' chek.tahvil_dahande.id %}" > {{chek.tahvil_dahande}}</td>
+            <td><a href = "{% url 'chek:profile' chek.id %}"> {{chek.shomare_sayad}} </a> </td>
+            <td>@{{chek.tarikh}}</td>
+            <td>{{chek.mablag}}</td>
+            <td>{{chek.kode_meli}}</td>
+            <td>{{chek.magsad}}</td>
+            <td>{{chek.tarikhe_daryaft}}</td>
+            <td>{{chek.ki_daryaft_kard}}</td>
+        </tr>
+        {% endfor %}
 
-<!-- On tables -->
-<table class="table-primary">...</table>
-<table class="table-secondary">...</table>
-<table class="table-success">...</table>
-<table class="table-danger">...</table>
-<table class="table-warning">...</table>
-<table class="table-info">...</table>
-<table class="table-light">...</table>
-<table class="table-dark">...</table>
-
-<!-- On rows -->
-<tr class="table-primary">...</tr>
-<tr class="table-secondary">...</tr>
-<tr class="table-success">...</tr>
-<tr class="table-danger">...</tr>
-<tr class="table-warning">...</tr>
-<tr class="table-info">...</tr>
-<tr class="table-light">...</tr>
-<tr class="table-dark">...</tr>
-
-<!-- On cells (`td` or `th`) -->
-<tr>
-  <td class="table-primary">...</td>
-  <td class="table-secondary">...</td>
-  <td class="table-success">...</td>
-  <td class="table-danger">...</td>
-  <td class="table-warning">...</td>
-  <td class="table-info">...</td>
-  <td class="table-light">...</td>
-  <td class="table-dark">...</td>
-</tr>
+    </tbody>
 
 
+
+
+
+  </table>
+
+{% comment %}{% endcomment %}
 
 {% endblock content %}
