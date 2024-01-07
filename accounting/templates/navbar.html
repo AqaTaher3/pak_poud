@@ -1,17 +1,42 @@
-<h1 style="background-color:#b1c82d;"><a href="/">Main Page</a></h1>
+{% comment %}
+{% endcomment %}
 
-<div style="display: flex;">
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">Main Page</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'customer:home' %}">Customers</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'factor:home' %}">Factors</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'chek:home' %}">Chek ha</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">New</a>
 
-    <div class="column" style="background-color:hsl(219, 41%, 46%); flex: 1; font-size: 20px; color: white; padding: 10px;">
-        <a href="{% url 'customer:home' %}" style="color: rgb(46, 43, 43); text-decoration: none;">kole moshtari ha</a><hr>
-        <a href="{% url 'chek:home' %}" style="color: white; text-decoration: none;">kole chek ha</a><hr>
-        <a href="{% url 'factor:home' %}" style="color: white; text-decoration: none;">kole factor ha</a><hr>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'customer:create' %}">new customer</a></li>
+              <li><a class="dropdown-item" href="{% url 'chek:create' %}">Chek Sayadi Jadid</a></li>
+              <li><a class="dropdown-item" href="{% url 'factor:create' %}">Factor Jadid</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" >
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
     </div>
-
-    <div class="column" style="background-color:#1db97d; flex: 1; font-size: 20px; color: white; padding: 10px;">
-        <a href="{% url 'customer:create' %}" style="color: white; text-decoration: none;">Moshtari Jadid</a><hr>
-        <a href="{% url 'chek:create' %}" style="color: white; text-decoration: none;">Chek Sayadi Jadid</a><hr>
-        <a href="{% url 'factor:create' %}" style="color: white; text-decoration: none;">Factor Jadid</a><hr>
-    </div>
-
-</div>
+  </nav>

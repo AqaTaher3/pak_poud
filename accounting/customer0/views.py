@@ -8,7 +8,7 @@ from .forms import CreateMoshtaryForm
 def kole_customer_ha(request):
 
     customers = Moshtary.objects.all()
-    customer_count = Moshtary.objects.all().count()
+    customer_count = len(customers)
     content = ({'customers': customers, 'customer_count':customer_count})
     return render(request, 'customer0/home.html', content)
 

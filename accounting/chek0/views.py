@@ -9,7 +9,8 @@ from django.db.models import Q
 def kole_chek_ha(request):
 
     chek_ha = Chek.objects.all()
-    chek_count = Moshtary.objects.count()
+    chek_count = len(chek_ha)
+    # chek_count = Moshtary.objects.count()
     content = ({'chek_ha': chek_ha, 'chek_count':chek_count})
     return render(request, 'chek0/home.html', content)
 

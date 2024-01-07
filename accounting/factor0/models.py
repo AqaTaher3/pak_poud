@@ -3,23 +3,19 @@ from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from customer0.models import Moshtary
 
+
+
+
+
 class Tage(models.Model):
     jens_parche = models.CharField(max_length=16, default='nil-bangal')
     rangrazi = models.CharField(max_length=30, default='sooper_derakhshan')
-    vazn = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True)
-    metraj = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True, default=120)
-    geymat = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True, default=240)
-
-    @property
-    def Mablag_kol(self):
-        if self.jens_parche in ['nil', 'bangal']:
-            total = self.vazn * self.geymat
-        else:
-            total = self.metraj * self.geymat
-        return total
+    vazn = models.DecimalField(max_digits=6, decimal_places=3, blank=True, null=True)
+    metraj = models.DecimalField(max_digits=6, decimal_places=3, null=True, default=120)
 
     class Meta:
         ordering = ['-jens_parche', '-vazn', '-metraj', ]
+        verbose_name_plural = "Tage_ha"
 
     def __str__(self) -> str:
         return str(self.vazn)
@@ -27,20 +23,39 @@ class Tage(models.Model):
 
 class Foroosh(models.Model):
     shomare_factor = models.IntegerField(blank=True, null=True)
-    kharidar = models.ForeignKey(Moshtary, on_delete=models.SET_NULL, blank=True, null=True)
-    tage = models.ManyToManyField(Tage, null=True, blank=True)
+    kharidar = models.ForeignKey(Moshtary, on_delete=models.SET_NULL, null=True)
+    tage = models.ManyToManyField(Tage, blank=True)
+    geymat = models.DecimalField(max_digits=6, decimal_places=3, null=True, default=240)
     tarikhe_foroosh = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
-    total = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True, default=240)
 
-    def get_total(self):
-        return self.tage.Mablag_kol
+    @property
+    def vazn_kol(self):
+        total_vazn = sum(t.vazn or 0 for t in self.tage.all())
+        return total_vazn
 
+    @property
+    def metraj_kol(self):
+        total_metraj = sum(t.metraj or 0 for t in self.tage.all())
+        return total_metraj
+
+    @property
+    def Mablag_kol(self):
+        if self.tage.exists() and self.tage.first().jens_parche in ['nil', 'bangal']:
+            total_price = float(self.vazn_kol) * float(self.geymat or 0)
+        else:
+            total_price = float(self.metraj_kol) * float(self.geymat or 0)
+        return total_price
+
+    # @property
+    # def sum_total_invoice(self):
+    #     total = sum(t.Mablag_kol for t in self.tage.all())
+    #     return total
     class Meta:
         ordering = ['-shomare_factor', ]
-
+        verbose_name_plural = "Factors"
     def __str__(self) -> str:
-        return str(self.shomare_factor) +"---"+ str(self.kharidar) 
+        return str(self.shomare_factor) +"---"+ str(self.kharidar)
 
 
 @receiver(pre_save, sender=Foroosh)

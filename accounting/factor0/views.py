@@ -6,8 +6,8 @@ from .forms import ForooshForm
 def kole_factor_ha(request):
 
     factors = Foroosh.objects.all()
-    factor_count = factors.count()
-    content = ({'factors': factors, 'factor_count':factor_count})
+    last_factor = factors.order_by("-id")[0].shomare_factor + 1
+    content = ({'factors': factors, 'last_factor':last_factor})
     return render(request, 'factor0/home.html', content)
 
 

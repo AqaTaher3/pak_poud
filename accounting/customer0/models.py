@@ -18,9 +18,14 @@ class Moshtary(models.Model):
 
     class Meta:
         ordering = ['name', ]
+        verbose_name_plural = "Moshtari_ha"
 
     def __str__(self) -> str:
         return self.name[0:50]
+    @property
+    def full_name(self):
+        "Returns the person's full name."
+        return f"{self.name} {self.last_name}"
 
 class ZiNaf(models.Model):
     name = models.CharField(max_length=50)
@@ -29,6 +34,7 @@ class ZiNaf(models.Model):
 
     class Meta:
         ordering = ['-name', ]
+        verbose_name_plural = "Zinaf_ha"
 
     def __str__(self) -> str:
         return self.name[0:50]
