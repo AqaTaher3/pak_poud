@@ -1,6 +1,13 @@
 from django.db import models
 from customer0.models import Moshtary
-# Create your models here.
+
+
+#     class DifficultChoices(models.TextChoices):
+#         EASY = 'easy'
+#         MEDIUM = 'medium'
+#         HARD = 'hard'
+#           choices = DifficultChoices
+
 
 class Chek(models.Model):
     tahvil_dahande = models.ForeignKey(Moshtary, null=True, on_delete=models.SET_NULL)
@@ -22,8 +29,22 @@ class Chek(models.Model):
         return str(self.daftar)
 
 
-#     class DifficultChoices(models.TextChoices):
-#         EASY = 'easy'
-#         MEDIUM = 'medium'
-#         HARD = 'hard'
-#           choices = DifficultChoices
+
+
+class Hesab_daryafti(models.Model):
+    chek = models.ManyToManyField(Chek, blank=True)
+    nagdi = models.IntegerField(blank=True, null=True)
+
+    tarikhe_daryaft = models.DateField(auto_now_add=True)
+    updated = models.DateField(auto_now=True)
+
+    @property
+    def kole_daryafti(self):
+        total_price = sum(int(t.mablag) or 0 for t in self.chek.all())
+        total_nagdi = self.nagdi
+        total = total_price + total_nagdi
+
+        return total
+
+    def __str__(self):
+        return  str(self.id) +str('--')+ str(self.kole_daryafti)
