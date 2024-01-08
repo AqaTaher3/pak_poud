@@ -27,15 +27,15 @@ def home(request):
                                               | Q(ki_daryaft_kard__isnull=True)).count()
 
 
-    fac = Foroosh.objects.annotate(
-        albagi_hesab=F('Mablag_kol') - F('Hesab_daryafti__kole_daryafti'))
+    # fac = Foroosh.objects.annotate(
+    #     albagi_hesab=F('Mablag_kol') - F('Hesab_daryafti__kole_daryafti'))
 
-    factor_haye_baz = fac.filter(albagi_hesab=0)
+    # factor_haye_baz = fac.filter(albagi_hesab=0)
 
 
-    factor_haye_baz_count = len(factor_haye_baz)
+    # factor_haye_baz_count = len(factor_haye_baz)
 
 
     content = ({'customers': customers, 'customers_count':customers_count,'chek_haye_kharj_nashode':chek_haye_kharj_nashode,
-                'chek_be_nam_nashode':chek_be_nam_nashode, 'magsad_nashode':magsad_nashode,'fac_count':factor_haye_baz_count})
+                'chek_be_nam_nashode':chek_be_nam_nashode, 'magsad_nashode':magsad_nashode,})
     return render(request, 'home0/home.html', content)

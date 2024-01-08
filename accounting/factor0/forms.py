@@ -8,7 +8,8 @@ from .models import Foroosh
 class ForooshForm(ModelForm):
     class Meta:
         model = Foroosh
-        fields = ['id', 'shomare factor', 'kharidar', 'geymat', 'tarikhe_foroosh', 'updated', ]
+        fields = '__all__'
+        # fields = ['id', 'shomare factor', 'kharidar', 'geymat', 'tarikhe_foroosh', 'updated', ]
 
 #     @property
 #     def vazn_kol(self):
