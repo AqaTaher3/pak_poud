@@ -4,11 +4,6 @@ from django.dispatch import receiver
 from customer0.models import Moshtary
 from chek0.models import Chek
 
-choices = [
-    ('baste' , 'baste'),
-    ('baz' , 'baz')
-]
-
 
 class Tage(models.Model):
     jens_parche = models.CharField(max_length=16, default='nil-bangal')
@@ -29,7 +24,6 @@ class Foroosh(models.Model):
     kharidar = models.ForeignKey(Moshtary, on_delete=models.SET_NULL, null=True)
     tage = models.ManyToManyField(Tage, blank=True)
     geymat = models.DecimalField(max_digits=6, decimal_places=3, null=True, default=240)
-    baste_shod = models.CharField(max_length=16, choices =choices, null=True)
     Hesab_daryafti = models.ForeignKey('Hesab_daryafti', on_delete=models.SET_NULL, blank= True, null=True)
     tarikhe_foroosh = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
@@ -58,20 +52,33 @@ class Foroosh(models.Model):
         albagi = self.Mablag_kol - total_daryafti
         return albagi
 
+    @property
+    def baste_shod(self):
+        if self.albagi_hesab == 0:
+            return "baste"
+        else:
+            return "baz"
+
     class Meta:
         ordering = ['-shomare_factor', ]
         verbose_name_plural = "Factors"
     def __str__(self) -> str:
-        return str(self.shomare_factor) + str(self.id) + str(self.kharidar)
+        return   str(self.id) +str('--')+ str(self.shomare_factor) +str('--')+   str(self.kharidar)
 
 class Hesab_daryafti(models.Model):
-    chek = models.ManyToManyField(Chek, null=True)
+    chek = models.ManyToManyField(Chek, null=True, blank=True)
     nagdi = models.IntegerField(blank=True, null=True)
-    daftari = models.IntegerField(blank=True, null=True)
+
     tarikhe_daryaft = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
 
     @property
     def kole_daryafti(self):
         total_price = sum(int(t.mablag) or 0 for t in self.chek.all())
+        total_nagdi = self.nagdi
+        total = total_price + total_nagdi
+
         return total_price
+
+    def __str__(self):
+        return  str(self.id) +str('--')+ str(self.kole_daryafti)

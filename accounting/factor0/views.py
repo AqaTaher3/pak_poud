@@ -7,12 +7,11 @@ def kole_factor_ha(request):
 
     factors = Foroosh.objects.all()
     last_factor = factors.order_by("-id")[0].shomare_factor + 1
-    factor_haye_baz = Foroosh.objects.filter(baste_shod = 'baz')
-    content = ({'factors': factors, 'last_factor':last_factor, 'factor_haye_baz':factor_haye_baz})
-    most_daftari = (factors.order_by("albagi_hesab")[0]).shomare_factor
+    # factor_haye_baz = Foroosh.objects.filter(baste_shod = 'baz')
+    content = ({'factors': factors, 'last_factor':last_factor, })
     return render(request, 'factor0/home.html', content)
 
-
+# 'factor_haye_baz':factor_haye_baz
 
 def factor_profile(request, id):
     factor = get_object_or_404(Foroosh, id=id)
