@@ -1,7 +1,6 @@
 from django.db import models
 from customer0.models import Moshtary
 
-
 class Chek(models.Model):
     tahvil_dahande = models.ForeignKey(Moshtary, null=True, on_delete=models.SET_NULL)
     daftar = models.IntegerField()
@@ -13,7 +12,7 @@ class Chek(models.Model):
     tarikhe_daryaft = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
     ki_daryaft_kard = models.CharField(max_length=100, null=True, blank=True)
-    # ax = models.ImageField()
+    ax = models.ImageField( blank=True, null=True, upload_to="chekha")
 
     class Meta:
         ordering = ['-daftar', ]
@@ -23,21 +22,19 @@ class Chek(models.Model):
 
 
 
-
 class Daryafti(models.Model):
     chek = models.ManyToManyField(Chek, blank=True)
     nagdi = models.IntegerField(blank=True, null=True)
-
     tarikhe_daryaft = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
 
     @property
     def kole_daryafti(self):
         total_price = sum(int(t.mablag) or 0 for t in self.chek.all())
-        total_nagdi = self.nagdi
+        total_nagdi = self.nagdi or 0
         total = total_price + total_nagdi
+        return total or 0
 
-        return total
 
     def __str__(self):
         return  str(self.id) +str('--')+ str(self.kole_daryafti)

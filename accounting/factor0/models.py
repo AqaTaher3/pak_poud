@@ -23,7 +23,7 @@ class Foroosh(models.Model):
     daryafti = models.ForeignKey(Daryafti, on_delete=models.SET_NULL, blank= True, null=True)
     geymat = models.DecimalField(max_digits=6, decimal_places=3, null=True, default=240)
     kharidar = models.ForeignKey(Moshtary, on_delete=models.SET_NULL, null=True)
-    shomare_factor = models.IntegerField(blank=True, null=True)
+    shomare_factor = models.IntegerField(blank=True, null=True, default=2000)
     tage = models.ManyToManyField(Tage, blank=True)
     tarikhe_foroosh = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
@@ -37,7 +37,6 @@ class Foroosh(models.Model):
     def metraj_kol(self):
         total_metraj = sum(t.metraj or 0 for t in self.tage.all())
         return total_metraj
-
     @property
     def mablag_kol(self):
         if self.tage.exists() and self.tage.first().jens_parche in ['nil', 'bangal']:
@@ -50,7 +49,7 @@ class Foroosh(models.Model):
     def albagi_hesab(self):
         total_daryafti = (self.daryafti.kole_daryafti or 0)
         albagi = self.mablag_kol - total_daryafti
-        return albagi
+        return albagi or 0
 
     @property
     def baste_shod(self):
