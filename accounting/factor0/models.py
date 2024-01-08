@@ -20,11 +20,11 @@ class Tage(models.Model):
 
 
 class Foroosh(models.Model):
-    shomare_factor = models.IntegerField(blank=True, null=True)
-    kharidar = models.ForeignKey(Moshtary, on_delete=models.SET_NULL, null=True)
-    tage = models.ManyToManyField(Tage, blank=True)
+    hesab_daryafti = models.ForeignKey('Hesab_daryafti', on_delete=models.SET_NULL, blank= True, null=True)
     geymat = models.DecimalField(max_digits=6, decimal_places=3, null=True, default=240)
-    Hesab_daryafti = models.ForeignKey('Hesab_daryafti', on_delete=models.SET_NULL, blank= True, null=True)
+    kharidar = models.ForeignKey(Moshtary, on_delete=models.SET_NULL, null=True)
+    shomare_factor = models.IntegerField(blank=True, null=True)
+    tage = models.ManyToManyField(Tage, blank=True)
     tarikhe_foroosh = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
 
@@ -39,7 +39,7 @@ class Foroosh(models.Model):
         return total_metraj
 
     @property
-    def Mablag_kol(self):
+    def mablag_kol(self):
         if self.tage.exists() and self.tage.first().jens_parche in ['nil', 'bangal']:
             total_price = float(self.vazn_kol) * float(self.geymat or 0)
         else:
@@ -48,8 +48,8 @@ class Foroosh(models.Model):
 
     @property
     def albagi_hesab(self):
-        total_daryafti = (self.Hesab_daryafti.kole_daryafti or 0)
-        albagi = self.Mablag_kol - total_daryafti
+        total_daryafti = (self.hesab_daryafti.kole_daryafti or 0)
+        albagi = self.mablag_kol - total_daryafti
         return albagi
 
     @property
@@ -78,7 +78,7 @@ class Hesab_daryafti(models.Model):
         total_nagdi = self.nagdi
         total = total_price + total_nagdi
 
-        return total_price
+        return total
 
     def __str__(self):
         return  str(self.id) +str('--')+ str(self.kole_daryafti)

@@ -4,15 +4,22 @@ from .models import Tage, Hesab_daryafti, Foroosh
 
 
 admin.site.register(Tage)
-admin.site.register(Hesab_daryafti)
 
 
+
+# @admin.register(Foroosh)
 class ForooshAdmin(admin.ModelAdmin):
-    list_display = ['shomare_factor', 'kharidar', 'geymat']
+    list_display = ['shomare_factor', 'kharidar', 'geymat', 'hesab_daryafti','vazn_kol', 'metraj_kol','mablag_kol', 'albagi_hesab', 'baste_shod']
+    search_fields = ('shomare_factor', )
+    list_filter = ('shomare_factor',)
+    prepopulated_fields = {'id':('shomare_factor',)}
+    # raw_id_fields = ('id',)
+
+
+class Hesab_daryaftiAdmin(admin.ModelAdmin):
+    list_display = [ 'nagdi', 'kole_daryafti']
+
 
 
 admin.site.register(Foroosh, ForooshAdmin)
-
-
-
-# , 'Hesab_daryafti','vazn_kol', 'metraj_kol','Mablag_kol', 'albagi_hesab', 'baste_shod'
+admin.site.register(Hesab_daryafti, Hesab_daryaftiAdmin)

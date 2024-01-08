@@ -1,13 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Foroosh
 from .forms import ForooshForm
-
+from django.db.models import Q
 
 def kole_factor_ha(request):
 
     factors = Foroosh.objects.all()
     last_factor = factors.order_by("-id")[0].shomare_factor + 1
-    # factor_haye_baz = Foroosh.objects.filter(baste_shod = 'baz')
     content = ({'factors': factors, 'last_factor':last_factor, })
     return render(request, 'factor0/home.html', content)
 

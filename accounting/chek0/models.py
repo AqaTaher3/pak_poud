@@ -20,3 +20,10 @@ class Chek(models.Model):
 
     def __str__(self) -> str:
         return str(self.daftar)
+
+
+#     class DifficultChoices(models.TextChoices):
+#         EASY = 'easy'
+#         MEDIUM = 'medium'
+#         HARD = 'hard'
+#           choices = DifficultChoices

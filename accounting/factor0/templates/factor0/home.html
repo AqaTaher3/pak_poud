@@ -10,10 +10,10 @@
         <th scope="col">shomare_factor</th>
         <th scope="col">tahvil_dahande </th>
         <th scope="col">tarikhe_foroosh </th>
-        <th scope="col">kole_factor</th>
-        <th scope="col">tasvie shod ?</th>
-        <th scope="col">albagi hesab ?</th>
-        <th scope="col">Hesab_daryafti</th>
+        <th scope="col">total</th>
+        <th scope="col">daryafti</th>
+        <th scope="col">albagi ?</th>
+        <th scope="col">tasvie</th>
 
 
 
@@ -27,10 +27,10 @@
             <td>@<a href = "{% url 'factor:profile' factor.id %}" > {{factor.shomare_factor}} </td>
             <td>@<a href = "{% url 'customer:profile' factor.kharidar.id %}" > {{factor.kharidar}} </td>
             <td>{{factor.tarikhe_foroosh}}</td>
-            <td>{{factor.Mablag_kol}}</td>
-            <td>{{factor.baste_shod}}</td>
+            <td>{{factor.mablag_kol}}</td>
+            <td>{{factor.hesab_daryafti.kole_daryafti}}</td>
             <td>{{factor.albagi_hesab}}</td>
-            <td>{{factor.Hesab_daryafti.kole_daryafti}}</td>
+            <td>{{factor.baste_shod}}</td>
         </tr>
         {% endfor %}
 

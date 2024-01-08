@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.db.models import F, Value, FloatField
 from customer0.models import Moshtary
 from chek0.models import Chek
 from factor0.models import Tage, Foroosh
@@ -25,19 +26,16 @@ def home(request):
     magsad_nashode = Chek.objects.filter(Q(magsad__isnull=False) | Q(ki_daryaft_kard__exact='')
                                               | Q(ki_daryaft_kard__isnull=True)).count()
 
-    factor_haye_baz = len(factors.filter(baste_shod = 'baz'))
-    factor_haye_baz_count = len(factors.filter(baste_shod = 'baz'))
+
+    fac = Foroosh.objects.annotate(
+        albagi_hesab=F('Mablag_kol') - F('Hesab_daryafti__kole_daryafti'))
+
+    factor_haye_baz = fac.filter(albagi_hesab=0)
 
 
-    # most_daftari = (factors.order_by("-updated")[0]).shomare_factor
-    # most_daftari = factor_haye_baz.order_by("-albagi_hesab")[0].shomare_factor
+    factor_haye_baz_count = len(factor_haye_baz)
 
 
-
-
-
-
-
-    content = ({'customers': customers, 'customers_count':customers_count,'most_daftari':most_daftari,'chek_haye_kharj_nashode':chek_haye_kharj_nashode,
-                'chek_be_nam_nashode':chek_be_nam_nashode, 'magsad_nashode':magsad_nashode,'factor_haye_baz':factor_haye_baz_count})
+    content = ({'customers': customers, 'customers_count':customers_count,'chek_haye_kharj_nashode':chek_haye_kharj_nashode,
+                'chek_be_nam_nashode':chek_be_nam_nashode, 'magsad_nashode':magsad_nashode,'fac_count':factor_haye_baz_count})
     return render(request, 'home0/home.html', content)
