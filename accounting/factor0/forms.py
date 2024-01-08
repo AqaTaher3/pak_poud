@@ -17,7 +17,7 @@ class ForooshForm(ModelForm):
 #         return total_vazn
 
 #     @property
-#     def metraj_kol(self):
+#     def total_metraje(self):
 #         total_metraj = sum(t.metraj or 0 for t in self.tage.all())
 #         return total_metraj
 
@@ -26,7 +26,7 @@ class ForooshForm(ModelForm):
 #         if self.tage.exists() and self.tage.first().jens_parche in ['nil', 'bangal']:
 #             total_price = float(self.vazn_kol) * float(self.geymat or 0)
 #         else:
-#             total_price = float(self.metraj_kol) * float(self.geymat or 0)
+#             total_price = float(self.total_metraje) * float(self.geymat or 0)
 #         return total_price
 
 #     @property

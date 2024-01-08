@@ -3,6 +3,8 @@ from .models import Foroosh
 from .forms import ForooshForm
 from django.db.models import Q
 
+
+
 def kole_factor_ha(request):
 
     factors = Foroosh.objects.all()
@@ -61,3 +63,10 @@ def delete_factor(request, id):
         factor.delete()
         return redirect('factor:home')
     return render(request, 'delete.html', {'factor':factor})
+
+
+def tage_haye_factor(request, factor_id):
+    factors = Foroosh.objects.get(id = factor_id)
+    tage_ha = factors.tage
+    context = {'tage_ha':tage_ha}
+    return render(request, 'factor0/tegefactor.html', context)

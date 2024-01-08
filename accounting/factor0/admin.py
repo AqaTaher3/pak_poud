@@ -9,7 +9,7 @@ admin.site.register(Tage)
 
 # @admin.register(Foroosh)
 class ForooshAdmin(admin.ModelAdmin):
-    list_display = ['shomare_factor', 'kharidar', 'geymat', 'daryafti','vazn_kol', 'metraj_kol','mablag_kol', 'albagi_hesab', 'baste_shod']
+    list_display = ['shomare_factor', 'kharidar', 'geymat', 'daryafti','vazn_kol', 'total_metraje','mablag_kol', 'albagi_hesab', 'baste_shod']
     search_fields = ('shomare_factor', )
     list_filter = ('shomare_factor',)
     # prepopulated_fields = {'id':('shomare_factor',)}

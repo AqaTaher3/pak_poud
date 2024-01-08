@@ -1,0 +1,20 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+<br><br>
+
+<h3>
+{% for tage in tage_ha %}
+ {{tage.vazn}}
+{% endfor %}
+</h3>
+
+<h3>
+</h3>
+
+
+{% endblock content %}
+
+<a href = "{% url 'factor:delete'  factor.id %}"> Delete factor </a> <br><hr>
+<a href="{% url 'factor:update' factor.id %}"> Update factor</a> <br>
