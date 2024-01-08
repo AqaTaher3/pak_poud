@@ -10,3 +10,4 @@ urlpatterns = [
     path('update/<str:id>/', views.update_chek, name='update'),
     path('delete/<str:id>/', views.delete_chek, name='delete'),
 ]
+

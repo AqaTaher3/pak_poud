@@ -3,10 +3,6 @@ from django.db import models
 
 
 
-choices = [
-    ('hagigi' , 'hagigi'),
-    ('hogogi' , 'hogogi')
-]
 
 
 class Moshtary(models.Model):
@@ -29,7 +25,12 @@ class Moshtary(models.Model):
 
 class ZiNaf(models.Model):
     name = models.CharField(max_length=50)
-    hagigi_or_hogogi = models.CharField(max_length=16, choices =choices)
+
+    class Noe_kode_meli(models.TextChoices):
+        Hagigi = 'hagigi'
+        Hogogi = 'hogogi'
+
+    hagigi_or_hogogi = models.CharField(max_length=16, choices =Noe_kode_meli)
     kode_meli = models.CharField(max_length=11)
 
     class Meta:

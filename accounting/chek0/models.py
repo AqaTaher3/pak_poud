@@ -2,13 +2,6 @@ from django.db import models
 from customer0.models import Moshtary
 
 
-#     class DifficultChoices(models.TextChoices):
-#         EASY = 'easy'
-#         MEDIUM = 'medium'
-#         HARD = 'hard'
-#           choices = DifficultChoices
-
-
 class Chek(models.Model):
     tahvil_dahande = models.ForeignKey(Moshtary, null=True, on_delete=models.SET_NULL)
     daftar = models.IntegerField()
@@ -31,7 +24,7 @@ class Chek(models.Model):
 
 
 
-class Hesab_daryafti(models.Model):
+class Daryafti(models.Model):
     chek = models.ManyToManyField(Chek, blank=True)
     nagdi = models.IntegerField(blank=True, null=True)
 

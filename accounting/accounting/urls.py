@@ -24,3 +24,7 @@ urlpatterns = [
     path('chek/', include('chek0.urls')),
     path('factor/', include('factor0.urls')),
 ]
+
+
+# python manage.py cleanup_unused_media ? pip install django-unused-media
+# find . -name "*.pyc" -delete

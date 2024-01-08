@@ -31,7 +31,7 @@ class ForooshForm(ModelForm):
 
 #     @property
 #     def albagi_hesab(self):
-#         total_daryafti = (self.hesab_daryafti.kole_daryafti or 0)
+#         total_daryafti = (self.daryafti.kole_daryafti or 0)
 #         albagi = self.mablag_kol - total_daryafti
 #         return albagi
 

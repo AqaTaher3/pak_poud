@@ -2,7 +2,7 @@ from django.db import models
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from customer0.models import Moshtary
-from chek0.models import Chek, Hesab_daryafti
+from chek0.models import Chek, Daryafti
 
 
 class Tage(models.Model):
@@ -20,7 +20,7 @@ class Tage(models.Model):
 
 
 class Foroosh(models.Model):
-    hesab_daryafti = models.ForeignKey(Hesab_daryafti, on_delete=models.SET_NULL, blank= True, null=True)
+    daryafti = models.ForeignKey(Daryafti, on_delete=models.SET_NULL, blank= True, null=True)
     geymat = models.DecimalField(max_digits=6, decimal_places=3, null=True, default=240)
     kharidar = models.ForeignKey(Moshtary, on_delete=models.SET_NULL, null=True)
     shomare_factor = models.IntegerField(blank=True, null=True)
@@ -48,7 +48,7 @@ class Foroosh(models.Model):
 
     @property
     def albagi_hesab(self):
-        total_daryafti = (self.hesab_daryafti.kole_daryafti or 0)
+        total_daryafti = (self.daryafti.kole_daryafti or 0)
         albagi = self.mablag_kol - total_daryafti
         return albagi
 

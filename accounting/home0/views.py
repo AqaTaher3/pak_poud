@@ -28,7 +28,7 @@ def home(request):
 
 
     # fac = Foroosh.objects.annotate(
-    #     albagi_hesab=F('Mablag_kol') - F('Hesab_daryafti__kole_daryafti'))
+    #     albagi_hesab=F('Mablag_kol') - F('daryafti__kole_daryafti'))
 
     # factor_haye_baz = fac.filter(albagi_hesab=0)
 

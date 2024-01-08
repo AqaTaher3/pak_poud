@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_unused_media', # python manage.py cleanup_unused_media ? pip install django-unused-media
+    'django_unused_media',
 
     'home0.apps.Home0Config',
     'chek0.apps.Chek0Config',
