@@ -5,15 +5,15 @@
 <br><br>
 
 <h3>
-shomare_id : {{factor.id}} <hr>
-shomare_factor : {{factor.shomare_factor}} <hr>
+phonr_number_id : {{factor.id}} <hr>
+factor_number : {{factor.factor_number}} <hr>
 kharidar : {{factor.kharidar}}<hr>
 tage : <a href = "{% url 'factor:tage_factor'  factor.id %}"> {{factor.tage}} </a> <br><hr>
-tarikhe_foroosh : {{factor.tarikhe_foroosh}}<hr>
-total : {{factor.Mablag_kol}}<hr>
+selling_date : {{factor.selling_date}}<hr>
+total : {{factor.total_price}}<hr>
 updated : {{factor.updated}}<hr>
-Mablag_kol : {{factor.Mablag_kol}}<hr>
-kole_daryafti : {{factor.daryafti.kole_daryafti}}<hr>
+total_price : {{factor.total_price}}<hr>
+tota_received : {{factor.daryafti.tota_received}}<hr>
 
 </h3>
 
@@ -24,4 +24,4 @@ kole_daryafti : {{factor.daryafti.kole_daryafti}}<hr>
 
 
 {% endblock content %}
-albagi_hesab : {{factor.albagi_hesab}}<hr>
+notـreceived : {{factor.notـreceived}}<hr>

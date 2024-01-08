@@ -1,10 +1,10 @@
 from django.contrib import admin
 
-from .models import Chek, Daryafti
+from .models import Czech, Received
 
-admin.site.register(Chek)
+admin.site.register(Czech)
 
 
-class DaryaftiAdmin(admin.ModelAdmin):
-    list_display = [ 'nagdi', 'kole_daryafti']
-admin.site.register(Daryafti, DaryaftiAdmin)
+class ReceivedAdmin(admin.ModelAdmin):
+    list_display = [ 'cash', 'tota_received']
+admin.site.register(Received, ReceivedAdmin)

@@ -1,10 +1,10 @@
 from django import forms
 
 from django.forms import ModelForm
-from .models import Chek
+from .models import Czech
 
 
-class CreateChekForm(ModelForm):
+class CreateCzechForm(ModelForm):
     class Meta:
-        model = Chek
+        model = Czech
         fields = "__all__"

@@ -1,65 +1,63 @@
 from django.db import models
-from django.db.models.signals import pre_save
-from django.dispatch import receiver
-from customer0.models import Moshtary
-from chek0.models import Chek, Daryafti
+from customer0.models import Client
+from chek0.models import Czech, Received
 
-
-class Tage(models.Model):
-    jens_parche = models.CharField(max_length=16, default='nil-bangal')
-    rangrazi = models.CharField(max_length=30, default='sooper_derakhshan')
-    vazn = models.DecimalField(max_digits=6, decimal_places=3, blank=True, null=True)
-    metraj = models.DecimalField(max_digits=6, decimal_places=3, null=True, default=120)
+class Roll(models.Model):
+    material = models.CharField(max_length=16, default='nil-bangal')
+    dyeing = models.CharField(max_length=30, default='sooper_derakhshan')
+    weight = models.DecimalField(max_digits=6, decimal_places=3, blank=True, null=True)
+    meter = models.DecimalField(max_digits=6, decimal_places=3, null=True, default=120)
 
     class Meta:
-        ordering = ['-jens_parche', '-vazn', '-metraj', ]
-        verbose_name_plural = "Tage_ha"
+        ordering = ['-material', '-weight', '-meter', ]
+        verbose_name_plural = "rolls_ha"
 
     def __str__(self) -> str:
-        return str(self.vazn)
+        return str(self.weight)
 
-
-class Foroosh(models.Model):
-    daryafti = models.ForeignKey(Daryafti, on_delete=models.SET_NULL, blank= True, null=True)
+class Invoice(models.Model):
+    factor_number = models.IntegerField(blank=True, null=True, default=2000)
+    kharidar = models.ForeignKey(Client, on_delete=models.SET_NULL, null=True)
     geymat = models.DecimalField(max_digits=6, decimal_places=3, null=True, default=240)
-    kharidar = models.ForeignKey(Moshtary, on_delete=models.SET_NULL, null=True)
-    shomare_factor = models.IntegerField(blank=True, null=True, default=2000)
-    tage = models.ForeignKey(Tage, on_delete=models.SET_NULL, null=True, blank=True)
-    tarikhe_foroosh = models.DateField(auto_now_add=True)
+    roll = models.ForeignKey(Roll, on_delete=models.SET_NULL, null=True)
+
+    daryafti = models.ForeignKey(Received, on_delete=models.SET_NULL, blank=True, null=True)
+
+    selling_date = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
 
     @property
-    def vazn_kol(self):
-        total_vazn = sum(t.vazn or 0 for t in self.tage.all())
-        return total_vazn
+    def total_weight(self):
+        return self.roll.weight if self.roll else 0
 
     @property
-    def total_metraje(self):
-        total_metraj = sum(t.metraj or 0 for t in self.tage.all())
-        return total_metraj
+    def total_meter(self):
+        return self.roll.meter if self.roll else 0
+
     @property
-    def mablag_kol(self):
-        if self.tage and self.tage.first().jens_parche in ['nil', 'bangal']:
-            total_price = float(self.vazn_kol) * float(self.geymat or 0)
+    def total_price(self):
+        if self.roll and self.roll.material in ['nil', 'bangal']:
+            total_pricee = float(self.total_weight) * float(self.geymat or 0)
         else:
-            total_price = float(self.total_metraje) * float(self.geymat or 0)
-        return total_price
+            total_pricee = float(self.total_meter) * float(self.geymat or 0)
+        return total_pricee
 
     @property
-    def albagi_hesab(self):
-        total_daryafti = (self.daryafti.kole_daryafti or 0)
-        albagi = self.mablag_kol - total_daryafti
-        return albagi or 0
+    def notـreceived(self):
+        total_received = self.daryafti.tota_received if self.daryafti else 0
+        remaining = self.total_price - total_received
+        return remaining or 0
 
     @property
-    def baste_shod(self):
-        if self.albagi_hesab == 0:
+    def  is_open(self):
+        if self.notـreceived == 0:
             return "baste"
         else:
             return "baz"
 
     class Meta:
-        ordering = ['-shomare_factor', ]
-        verbose_name_plural = "Factors"
+        ordering = ['-factor_number', ]
+        verbose_name_plural = "Invoices"
+
     def __str__(self) -> str:
-        return   str(self.id) +str('--')+ str(self.shomare_factor) +str('--')+   str(self.kharidar)
+        return str(self.id) + '--' + str(self.factor_number) + '--' + str(self.kharidar)

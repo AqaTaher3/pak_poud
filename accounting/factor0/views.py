@@ -1,21 +1,21 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Foroosh
-from .forms import ForooshForm
+from .models import Invoice
+from .forms import InvoiceForm
 from django.db.models import Q
 
 
 
 def kole_factor_ha(request):
 
-    factors = Foroosh.objects.all()
-    last_factor = factors.order_by("-id")[0].shomare_factor + 1
+    factors = Invoice.objects.all()
+    last_factor = factors.order_by("-id")[0].factor_number + 1
     content = ({'factors': factors, 'last_factor':last_factor, })
     return render(request, 'factor0/home.html', content)
 
 # 'factor_haye_baz':factor_haye_baz
 
 def factor_profile(request, id):
-    factor = get_object_or_404(Foroosh, id=id)
+    factor = get_object_or_404(Invoice, id=id)
     content = {'factor': factor}
     return render(request, 'factor0/profile.html', content)
 
@@ -24,7 +24,7 @@ def factor_profile(request, id):
 def create_factor(request):
 
     if request.method == "POST":
-        form = ForooshForm(request.POST)
+        form = InvoiceForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('factor:home')
@@ -33,32 +33,32 @@ def create_factor(request):
 
     else:
 
-        form = ForooshForm()
+        form = InvoiceForm()
         context = {'form': form}
         return render(request, 'create.html', context)
 
 
 
 def update_factor(request, id):
-    factor = Foroosh.objects.get(id=id)
-    form = ForooshForm(instance=factor)
+    factor = Invoice.objects.get(id=id)
+    form = InvoiceForm(instance=factor)
     if request.method == "POST":
-        form = ForooshForm(request.POST, instance=factor)
+        form = InvoiceForm(request.POST, instance=factor)
         if form.is_valid():
             form.save()
             return redirect('factor:home')
         return redirect('factor:update', id)
 
     else:
-        form = ForooshForm(instance=factor)
+        form = InvoiceForm(instance=factor)
         context = {'form': form}
-        ForooshForm(instance=factor)
+        InvoiceForm(instance=factor)
         return render(request, "update.html", context)
 
 
 
 def delete_factor(request, id):
-    factor = Foroosh.objects.get(id=id)
+    factor = Invoice.objects.get(id=id)
     if request.method == 'POST':
         factor.delete()
         return redirect('factor:home')
@@ -66,7 +66,7 @@ def delete_factor(request, id):
 
 
 def tage_haye_factor(request, factor_id):
-    factors = Foroosh.objects.get(id = factor_id)
+    factors = Invoice.objects.get(id = factor_id)
     tage_ha = factors.tage
     context = {'tage_ha':tage_ha}
     return render(request, 'factor0/tegefactor.html', context)

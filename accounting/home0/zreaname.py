@@ -9,10 +9,10 @@
 # base_dir = os.path.dirname(current_directory)
 # # print(current_directory)
 
-# ax_dir_name = r'C:\Users\G L S\Documents\git_hub\cheke_sayadi\Ax'
+# check_photo_dir_name = r'C:\Users\G L S\Documents\git_hub\cheke_sayadi\Ax'
 # bi_barcode_dir_name = r'C:\Users\G L S\Documents\git_hub\cheke_sayadi\Ax\bi_barcodee'
 # duplicate_dir_name = r'C:\Users\G L S\Documents\git_hub\cheke_sayadi\Ax\duplicate'
-# new_dir_name = os.path.join(ax_dir_name, "new")
+# new_dir_name = os.path.join(check_photo_dir_name, "new")
 
 # def scan_barcode(image):
 #     # تشخیص بارکد در تصویر
@@ -79,8 +79,8 @@
 
 # # مسیر تصویر مورد نظر
 # direct = r'C:\Users\G L S\Documents\git_hub\cheke_sayadi'
-# ax = '25.jpg'
-# path = os.path.join(direct, ax)
+# check_photo = '25.jpg'
+# path = os.path.join(direct, check_photo)
 # patt = r'c:\Users\G L S\Documents\git_hub\cheke_sayadi\25.jpg'
 # image_path = patt
 

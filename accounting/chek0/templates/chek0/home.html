@@ -6,15 +6,15 @@
     <thead>
       <tr>
         <th scope="col">id</th>
-        <th scope="col">daftar</th>
+        <th scope="col">check_book</th>
         <th scope="col">Saheb_chek </th>
-        <th scope="col">shomare-sayad </th>
-        <th scope="col">tarikh</th>
-        <th scope="col">mablag</th>
-        <th scope="col">kode_meli?</th>
-        <th scope="col">magsad</th>
-        <th scope="col">tarikhe_daryaft</th>
-        <th scope="col">ki_daryaft_kard</th>
+        <th scope="col">phonr_number-sayad </th>
+        <th scope="col">dueـdate</th>
+        <th scope="col">amount</th>
+        <th scope="col">chek_owner_national_code?</th>
+        <th scope="col">destination</th>
+        <th scope="col">dueـdate</th>
+        <th scope="col">holder</th>
       </tr>
     </thead>
     <tbody>
@@ -22,15 +22,15 @@
         {% for chek in chek_ha %}
         <tr>
             <th scope="row">{{chek.id}}</th>
-            <td>@{{chek.daftar}}</td>
-            <td>@<a href = "{% url 'customer:profile' chek.tahvil_dahande.id %}" > {{chek.tahvil_dahande}}</td>
-            <td><a href = "{% url 'chek:profile' chek.id %}"> {{chek.shomare_sayad}} </a> </td>
-            <td>@{{chek.tarikh}}</td>
-            <td>{{chek.mablag}}</td>
-            <td>{{chek.kode_meli}}</td>
-            <td>{{chek.magsad}}</td>
-            <td>{{chek.tarikhe_daryaft}}</td>
-            <td>{{chek.ki_daryaft_kard}}</td>
+            <td>@{{chek.check_book}}</td>
+            <td>@<a href = "{% url 'customer:profile' chek.chec_bearer.id %}" > {{chek.chec_bearer}}</td>
+            <td><a href = "{% url 'chek:profile' chek.id %}"> {{chek.sayad}} </a> </td>
+            <td>@{{chek.dueـdate}}</td>
+            <td>{{chek.amount}}</td>
+            <td>{{chek.chek_owner_national_code}}</td>
+            <td>{{chek.destination}}</td>
+            <td>{{chek.dueـdate}}</td>
+            <td>{{chek.holder}}</td>
         </tr>
         {% endfor %}
 

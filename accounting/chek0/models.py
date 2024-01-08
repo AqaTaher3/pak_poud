@@ -1,40 +1,40 @@
 from django.db import models
-from customer0.models import Moshtary
+from customer0.models import Client
 
-class Chek(models.Model):
-    tahvil_dahande = models.ForeignKey(Moshtary, null=True, on_delete=models.SET_NULL)
-    daftar = models.IntegerField()
-    shomare_sayad = models.CharField(max_length=16)
-    tarikh = models.CharField(max_length=15)
-    mablag = models.CharField(max_length=20)
-    kode_meli = models.CharField(max_length=20)
-    magsad = models.CharField(max_length=100, null=True, blank=True)
-    tarikhe_daryaft = models.DateField(auto_now_add=True)
+class Czech(models.Model):
+    chec_bearer = models.ForeignKey(Client, null=True, on_delete=models.SET_NULL)
+    check_book = models.IntegerField()
+    sayad = models.CharField(max_length=16)
+    dueـdate = models.CharField(max_length=15)
+    amount = models.CharField(max_length=20)
+    chek_owner_national_code = models.CharField(max_length=20)
+    destination = models.CharField(max_length=100, null=True, blank=True)
+    dueـdate = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
-    ki_daryaft_kard = models.CharField(max_length=100, null=True, blank=True)
-    ax = models.ImageField( blank=True, null=True, upload_to="chekha")
+    holder = models.CharField(max_length=100, null=True, blank=True)
+    check_photo = models.ImageField( blank=True, null=True, upload_to="chekha")
 
     class Meta:
-        ordering = ['-daftar', ]
+        ordering = ['-check_book', ]
 
     def __str__(self) -> str:
-        return str(self.daftar)
+        return str(self.check_book)
 
 
 
-class Daryafti(models.Model):
-    chek = models.ManyToManyField(Chek, blank=True)
-    nagdi = models.IntegerField(blank=True, null=True)
-    tarikhe_daryaft = models.DateField(auto_now_add=True)
+class Received(models.Model):
+    chek = models.ManyToManyField(Czech, blank=True)
+    cash = models.IntegerField(blank=True, null=True)
+    date = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
 
     @property
-    def kole_daryafti(self):
-        total_price = sum(int(t.mablag) or 0 for t in self.chek.all())
-        total_nagdi = self.nagdi or 0
-        total = total_price + total_nagdi
+    def tota_received(self):
+        total_price = sum(int(t.amount) or 0 for t in self.chek.all())
+        total_cash = self.cash or 0
+        total = total_price + total_cash
         return total or 0
 
 
     def __str__(self):
-        return  str(self.id) +str('--')+ str(self.kole_daryafti)
+        return  str(self.id) +str('--')+ str(self.tota_received)

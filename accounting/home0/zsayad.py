@@ -2,7 +2,7 @@
 # import pandas as pd
 # import os
 
-# A = daftar = 0
+# A = check_book = 0
 # B = person = 1
 # C = sayad = 2
 # D = date = 3
@@ -31,7 +31,7 @@
 # data = list(sheet.iter_rows(values_only=True))
 
 # start_row = 7
-# end_row = sheet.max_row
+# end_row = sheet.mcheck_photo_row
 
 # # print(type(data[8][0]))
 
@@ -39,7 +39,7 @@
 #        for row in range(start_row, end_row):
 #               cells = data[start_row][columnn]
 #             #   cells.data_type = None
-#               cels = sheet.cell(row = row, column = columnn)  
+#               cels = sheet.cell(row = row, column = columnn)
 #               cels.data_type = type
 
 # # changing_type(sheet, 1, str)
@@ -52,7 +52,7 @@
 
 
 # # for row in range(start_row, end_row):
-# #         # print(data[row][daftar])
+# #         # print(data[row][check_book])
 # #         if data[row][1] == 2012 :
 # #                 sheet.cell(row=row, column=sayad).value = "sayad"
 # #                 sheet.cell(row=row, column=mmm).value = "mmmn"

@@ -1,21 +1,21 @@
 from django.contrib import admin
 
-from .models import Tage, Foroosh
+from .models import Roll, Invoice
 
 
-admin.site.register(Tage)
+admin.site.register(Roll)
 
 
 
-# @admin.register(Foroosh)
-class ForooshAdmin(admin.ModelAdmin):
-    list_display = ['shomare_factor', 'kharidar', 'geymat', 'daryafti','vazn_kol', 'total_metraje','mablag_kol', 'albagi_hesab', 'baste_shod']
-    search_fields = ('shomare_factor', )
-    list_filter = ('shomare_factor',)
-    # prepopulated_fields = {'id':('shomare_factor',)}
+# @admin.register(Invoice)
+class InvoiceAdmin(admin.ModelAdmin):
+    list_display = ['factor_number', 'kharidar', 'geymat', 'daryafti','total_meter', 'total_meter','total_price', 'notـreceived', ]
+    search_fields = ('factor_number', )
+    list_filter = ('factor_number',)
+    # prepopulated_fields = {'id':('factor_number',)}
     # raw_id_fields = ('id',)
 
-admin.site.register(Foroosh, ForooshAdmin)
+admin.site.register(Invoice, InvoiceAdmin)
 
 
 

@@ -1,7 +1,6 @@
 from django.contrib import admin
 
-from .models import Moshtary, ZiNaf
+from .models import Client, Transferee
 
-admin.site.register(Moshtary)
-admin.site.register(ZiNaf)
-
+admin.site.register(Client)
+admin.site.register(Transferee)

@@ -5,12 +5,12 @@ from django.db import models
 
 
 
-class Moshtary(models.Model):
+class Client(models.Model):
     name = models.CharField(max_length=50)
-    kode_meli = models.CharField(max_length=16, blank =True, null = True)
-    shomare = models.CharField(max_length=16)
+    national_code = models.CharField(max_length=16, blank =True, null = True)
+    phonr_number = models.CharField(max_length=16)
     address = models.TextField()
-    sagfe_etebar = models.CharField(max_length=16)
+    creditـlimit = models.CharField(max_length=16)
 
     class Meta:
         ordering = ['name', ]
@@ -23,15 +23,15 @@ class Moshtary(models.Model):
         "Returns the person's full name."
         return f"{self.name} {self.last_name}"
 
-class ZiNaf(models.Model):
+class Transferee(models.Model):
     name = models.CharField(max_length=50)
 
-    class Noe_kode_meli(models.TextChoices):
+    class Nationa_code_type(models.TextChoices):
         Hagigi = 'hagigi'
         Hogogi = 'hogogi'
 
-    hagigi_or_hogogi = models.CharField(max_length=16, choices =Noe_kode_meli)
-    kode_meli = models.CharField(max_length=11)
+    real_or_lega_nationality = models.CharField(max_length=16, choices =Nationa_code_type)
+    national_code = models.CharField(max_length=16, blank =True, null = True)
 
     class Meta:
         ordering = ['-name', ]

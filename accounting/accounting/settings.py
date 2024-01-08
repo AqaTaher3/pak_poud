@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django_unused_media',
 
     'home0.apps.Home0Config',
-    'chek0.apps.Chek0Config',
+    'chek0.apps.Czech0Config',
     'customer0.apps.Customer0Config',
     'factor0.apps.Factor0Config',
 ]

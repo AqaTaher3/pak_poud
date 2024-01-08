@@ -7,12 +7,12 @@
     <thead>
       <tr>
         <th scope="col">factor_id</th>
-        <th scope="col">shomare_factor</th>
-        <th scope="col">tahvil_dahande </th>
-        <th scope="col">tarikhe_foroosh </th>
+        <th scope="col">factor_number</th>
+        <th scope="col">chec_bearer </th>
+        <th scope="col">selling_date </th>
         <th scope="col">total</th>
         <th scope="col">daryafti</th>
-        <th scope="col">albagi ?</th>
+        <th scope="col">remaining ?</th>
         <th scope="col">tasvie</th>
       </tr>
     </thead>
@@ -21,13 +21,13 @@
         {% for factor in factors %}
         <tr>
             <th scope="row">{{factor.id}}</th>
-            <td>@<a href = "{% url 'factor:profile' factor.id %}" > {{factor.shomare_factor}} </td>
+            <td>@<a href = "{% url 'factor:profile' factor.id %}" > {{factor.factor_number}} </td>
             <td>@<a href = "{% url 'customer:profile' factor.kharidar.id %}" > {{factor.kharidar}} </td>
-            <td>{{factor.tarikhe_foroosh}}</td>
-            <td>{{factor.mablag_kol}}</td>
-            <td>{{factor.mablag_kol}}</td>
-            <td>{{factor.mablag_kol}}</td>
-            <td>{{factor.mablag_kol}}</td>
+            <td>{{factor.selling_date}}</td>
+            <td>{{factor.total_price}}</td>
+            <td>{{factor.total_price}}</td>
+            <td>{{factor.total_price}}</td>
+            <td>{{factor.total_price}}</td>
         </tr>
         {% endfor %}
 

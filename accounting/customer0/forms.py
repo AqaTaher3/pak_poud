@@ -1,10 +1,10 @@
 from django import forms
 
 from django.forms import ModelForm
-from .models import Moshtary
+from .models import Client
 
 
-class CreateMoshtaryForm(ModelForm):
+class CreateClientForm(ModelForm):
     class Meta:
-        model = Moshtary
+        model = Client
         fields = "__all__"
