@@ -19,8 +19,8 @@ def customer_profile(request, pk):
     customer = get_object_or_404(Client, id=pk)
     customer_cheks= Czech.objects.filter(chec_bearer = customer)
     chek_count= Czech.objects.filter(chec_bearer = customer).count()
-    chek_be_nam_nashode= Czech.objects.filter(Q(chec_bearer = customer) &  (Q(holder__exact='') | Q(holder__isnull=True)))
-    be_nam_nashode = chek_be_nam_nashode.count()
+    chek_haye_daryaft_nashode= Czech.objects.filter(Q(chec_bearer = customer) &  (Q(holder__exact='') | Q(holder__isnull=True)))
+    be_nam_nashode = chek_haye_daryaft_nashode.count()
     content = {'customer':customer, 'chek_count':chek_count, 'be_nam_nashode':be_nam_nashode}
     return render(request, 'customer0/profile.html', content)
 

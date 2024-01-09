@@ -8,7 +8,13 @@
 phonr_number_id : {{factor.id}} <hr>
 factor_number : {{factor.factor_number}} <hr>
 kharidar : {{factor.kharidar}}<hr>
-tage : <a href = "{% url 'factor:tage_factor'  factor.id %}"> {{factor.tage}} </a> <br><hr>
+tage_ha : <a href ="{% url 'factor:tage_factor'  factor.id %}">
+
+            {% for roll in factor.roll.all %}
+            <br/>{{ roll }}
+            {% endfor %}
+
+          </a> <br><hr>
 selling_date : {{factor.selling_date}}<hr>
 total : {{factor.total_price}}<hr>
 updated : {{factor.updated}}<hr>
@@ -18,10 +24,12 @@ tota_received : {{factor.daryafti.tota_received}}<hr>
 </h3>
 
 <h3>
-<a href = "{% url 'factor:delete'  factor.id %}"> Delete factor </a> <br><hr>
-<a href="{% url 'factor:update' factor.id %}"> Update factor</a> <br>
+    <a href="{% url 'factor:update' factor.id %}">
+        <button type="button" class="btn btn-primary">Update factor</button>
+    </a> <br>
+    <a href = "{% url 'factor:delete'  factor.id %}">
+        <button type="button" class="btn btn-danger">Delete factor</button>
+    </a><br>
 </h3>
 
-
 {% endblock content %}
-notـreceived : {{factor.notـreceived}}<hr>

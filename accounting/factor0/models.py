@@ -19,7 +19,7 @@ class Invoice(models.Model):
     factor_number = models.IntegerField(blank=True, null=True, default=2000)
     kharidar = models.ForeignKey(Client, on_delete=models.SET_NULL, null=True)
     geymat = models.DecimalField(max_digits=6, decimal_places=3, null=True, default=240)
-    roll = models.ForeignKey(Roll, on_delete=models.SET_NULL, null=True)
+    roll = models.ManyToManyField(Roll, null=True)
 
     daryafti = models.ForeignKey(Received, on_delete=models.SET_NULL, blank=True, null=True)
 
@@ -28,25 +28,32 @@ class Invoice(models.Model):
 
     @property
     def total_weight(self):
-        return self.roll.weight if self.roll else 0
+        return sum(roll.weight for roll in self.roll.all()) if self.roll.exists() else 0
+
 
     @property
     def total_meter(self):
-        return self.roll.meter if self.roll else 0
+        return sum(roll.meter for roll in self.roll.all()) if self.roll.exists() else 0
+
 
     @property
     def total_price(self):
-        if self.roll and self.roll.material in ['nil', 'bangal']:
-            total_pricee = float(self.total_weight) * float(self.geymat or 0)
+        if self.roll.exists():
+            if self.roll.filter(material__in=['nil', 'bangal']).exists():
+                total_pricee = sum(roll.weight * (self.geymat or 0) for roll in self.roll.all())
+            else:
+                total_pricee = sum(roll.meter * (self.geymat or 0) for roll in self.roll.all())
         else:
-            total_pricee = float(self.total_meter) * float(self.geymat or 0)
+            total_pricee = 0
         return total_pricee
+
 
     @property
     def notـreceived(self):
         total_received = self.daryafti.tota_received if self.daryafti else 0
         remaining = self.total_price - total_received
         return remaining or 0
+
 
     @property
     def  is_open(self):

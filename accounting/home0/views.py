@@ -21,9 +21,9 @@ def home(request):
 
     chek_haye_kharj_nashode = len(cheks.filter(Q(destination__exact='') | Q(destination__isnull=True)))
 
-    chek_be_nam_nashode = len(cheks.filter(Q(holder__exact='') | Q(holder__isnull=True)))
+    chek_haye_daryaft_nashode = len(cheks.filter(Q(holder__exact='') | Q(holder__isnull=True)))
 
-    destination_nashode = Czech.objects.filter(Q(destination__isnull=False) | Q(holder__exact='')
+    be_name_magsad_nashode = Czech.objects.filter(Q(destination__isnull=False) | Q(holder__exact='')
                                               | Q(holder__isnull=True)).count()
 
 
@@ -37,5 +37,5 @@ def home(request):
 
 
     content = ({'customers': customers, 'customers_count':customers_count,'chek_haye_kharj_nashode':chek_haye_kharj_nashode,
-                'chek_be_nam_nashode':chek_be_nam_nashode, 'destination_nashode':destination_nashode,})
+                'chek_haye_daryaft_nashode':chek_haye_daryaft_nashode, 'be_name_magsad_nashode':be_name_magsad_nashode,})
     return render(request, 'home0/home.html', content)

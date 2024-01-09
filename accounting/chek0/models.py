@@ -12,10 +12,18 @@ class Czech(models.Model):
     dueـdate = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
     holder = models.CharField(max_length=100, null=True, blank=True)
-    check_photo = models.ImageField( blank=True, null=True, upload_to="chekha")
+
+    class RegistereChoice(models.TextChoices):
+        Yes = 'yes'
+        No = 'no'
+
+    is_registered = models.CharField(max_length=16, choices =RegistereChoice, default=RegistereChoice.No)
 
     class Meta:
         ordering = ['-check_book', ]
+
+
+    check_photo = models.ImageField( blank=True, null=True, upload_to="chekha")
 
     def __str__(self) -> str:
         return str(self.check_book)

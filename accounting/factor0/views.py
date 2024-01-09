@@ -67,6 +67,6 @@ def delete_factor(request, id):
 
 def tage_haye_factor(request, factor_id):
     factors = Invoice.objects.get(id = factor_id)
-    tage_ha = factors.tage
+    tage_ha = factors.roll.all()
     context = {'tage_ha':tage_ha}
     return render(request, 'factor0/tegefactor.html', context)
