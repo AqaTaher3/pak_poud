@@ -22,7 +22,7 @@
         <tr>
             <th scope="row">{{factor.id}}</th>
             <td>@<a href = "{% url 'factor:profile' factor.id %}" > {{factor.factor_number}} </td>
-            <td>@<a href = "{% url 'customer:profile' factor.kharidar.id %}" > {{factor.kharidar}} </td>
+            <td>@<a href = "{% url 'customer:profile' factor.client.id %}" > {{factor.client}} </td>
             <td>{{factor.selling_date}}</td>
             <td>{{factor.total_price}}</td>
             <td>{{factor.total_price}}</td>

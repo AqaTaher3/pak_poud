@@ -9,7 +9,7 @@ class InvoiceForm(ModelForm):
     class Meta:
         model = Invoice
         fields = '__all__'
-        # fields = ['id', 'phonr_number factor', 'kharidar', 'geymat', 'selling_date', 'updated', ]
+        # fields = ['id', 'phonr_number factor', 'client', 'geymat', 'selling_date', 'updated', ]
 
 #     @property
 #     def total_meter(self):
@@ -46,4 +46,4 @@ class InvoiceForm(ModelForm):
 #         ordering = ['-factor_number', ]
 #         verbose_name_plural = "Factors"
 #     def __str__(self) -> str:
-#         return   str(self.id) +str('--')+ str(self.factor_number) +str('--')+   str(self.kharidar)
+#         return   str(self.id) +str('--')+ str(self.factor_number) +str('--')+   str(self.client)

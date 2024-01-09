@@ -17,7 +17,7 @@ class Roll(models.Model):
 
 class Invoice(models.Model):
     factor_number = models.IntegerField(blank=True, null=True, default=2000)
-    kharidar = models.ForeignKey(Client, on_delete=models.SET_NULL, null=True)
+    client = models.ForeignKey(Client, on_delete=models.SET_NULL, null=True)
     geymat = models.DecimalField(max_digits=6, decimal_places=3, null=True, default=240)
     roll = models.ManyToManyField(Roll, null=True)
 
@@ -67,4 +67,4 @@ class Invoice(models.Model):
         verbose_name_plural = "Invoices"
 
     def __str__(self) -> str:
-        return str(self.id) + '--' + str(self.factor_number) + '--' + str(self.kharidar)
+        return str(self.id) + '--' + str(self.factor_number) + '--' + str(self.client)

@@ -37,7 +37,7 @@ class Migration(migrations.Migration):
                 ('selling_date', models.DateField(auto_now_add=True)),
                 ('updated', models.DateField(auto_now=True)),
                 ('daryafti', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='chek0.received')),
-                ('kharidar', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='customer0.client')),
+                ('client', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='customer0.client')),
                 ('roll', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='factor0.roll')),
             ],
             options={
