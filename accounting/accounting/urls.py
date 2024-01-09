@@ -29,3 +29,4 @@ urlpatterns = [
 # python manage.py cleanup_unused_media ? pip install django-unused-media
 # find . -name "*.pyc" -delete
 # python manage.py flush
+# python manage.py migrate factor0 zero

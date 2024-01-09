@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from customer0.models import Client
-from chek0.models import Czech
+from factor0.models import Invoice
+from .models import Czech
 from .forms import CreateCzechForm
 from customer0.models import Client
 from django.db.models import Q
@@ -59,3 +60,23 @@ def delete_chek(request, id):
         chek.delete()
         return redirect('chek:home')
     return render(request, 'delete.html', {'obj':chek})
+
+
+def daryafti_profile(request, factor_id):
+
+    factors = Invoice.objects.all()
+    factor = factors.get(id = factor_id)
+    factor_number = factor.invoice_number
+    received = factor.received
+    cheks = received.chek.all()
+    cash = received.cash
+    date = received.date
+    updated = received.date
+    hesab_id = received.id
+    kole_daryafti = received.total_received
+
+
+
+    context = {'factor':factor,'cash':cash, 'cheks':cheks, 'date':date, 'updated':updated,
+               'hesab_id':hesab_id, 'kole_daryafti':kole_daryafti}
+    return render(request, "chek0/hesab_profile.html", context)

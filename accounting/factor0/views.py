@@ -1,14 +1,35 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Invoice
-from .forms import InvoiceForm
+from .models import Invoice, Roll
+from .forms import CreateInvoiceForm, CreateRollForm
 from django.db.models import Q
+
+from django.shortcuts import get_object_or_404
+from django.urls import reverse
+from django.http import HttpResponseRedirect
+
+from django.views.generic.edit import CreateView, UpdateView
+
+
+class RollCreateView(CreateView):
+    model = Roll
+    form_class = CreateRollForm
+    template_name = 'app1/model1_form.html'
+    success_url = '/app1/model1/'
+
+class RollUpdateView(UpdateView):
+    model = Roll
+    form_class = CreateRollForm
+    template_name = 'app1/model1_form.html'
+    success_url = '/app1/model1/'
 
 
 
 def kole_factor_ha(request):
 
     factors = Invoice.objects.all()
-    last_factor = factors.order_by("-id")[0].invoice_number + 1
+    factors = Invoice.objects.all()
+    # last_factor = factors.order_by("-id")[0].invoice_number + 1
+    last_factor = 000
     content = ({'factors': factors, 'last_factor':last_factor, })
     return render(request, 'factor0/home.html', content)
 
@@ -20,11 +41,10 @@ def factor_profile(request, id):
     return render(request, 'factor0/profile.html', content)
 
 
-
 def create_factor(request):
 
     if request.method == "POST":
-        form = InvoiceForm(request.POST)
+        form = CreateInvoiceForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('factor:home')
@@ -33,7 +53,7 @@ def create_factor(request):
 
     else:
 
-        form = InvoiceForm()
+        form = CreateInvoiceForm()
         context = {'form': form}
         return render(request, 'create.html', context)
 
@@ -41,18 +61,18 @@ def create_factor(request):
 
 def update_factor(request, id):
     factor = Invoice.objects.get(id=id)
-    form = InvoiceForm(instance=factor)
+    form = CreateInvoiceForm(instance=factor)
     if request.method == "POST":
-        form = InvoiceForm(request.POST, instance=factor)
+        form = CreateInvoiceForm(request.POST, instance=factor)
         if form.is_valid():
             form.save()
             return redirect('factor:home')
         return redirect('factor:update', id)
 
     else:
-        form = InvoiceForm(instance=factor)
+        form = CreateInvoiceForm(instance=factor)
         context = {'form': form}
-        InvoiceForm(instance=factor)
+        CreateInvoiceForm(instance=factor)
         return render(request, "update.html", context)
 
 

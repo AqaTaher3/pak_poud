@@ -6,5 +6,5 @@ admin.site.register(Czech)
 
 
 class ReceivedAdmin(admin.ModelAdmin):
-    list_display = [ 'cash', 'tota_received']
+    list_display = ['id', 'cash', 'total_received', 'updated']
 admin.site.register(Received, ReceivedAdmin)

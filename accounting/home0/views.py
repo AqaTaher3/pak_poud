@@ -28,7 +28,7 @@ def home(request):
 
 
     # fac = Invoice.objects.annotate(
-    #     notـreceived=F('total_price') - F('received__tota_received'))
+    #     notـreceived=F('total_price') - F('received__total_received'))
 
     # factor_haye_baz = fac.filter(notـreceived=0)
 

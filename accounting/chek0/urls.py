@@ -9,5 +9,5 @@ urlpatterns = [
     path('create/', views.create_chek, name='create'),
     path('update/<str:id>/', views.update_chek, name='update'),
     path('delete/<str:id>/', views.delete_chek, name='delete'),
+    path('hesab-for-factor/<int:factor_id>', views.daryafti_profile, name='daryafti_profile'),
 ]
-

@@ -9,4 +9,5 @@ urlpatterns = [
     path('update/<int:id>/', views.update_factor, name='update'),
     path('create/', views.create_factor, name='create'),
     path('rools-of-factor/<int:factor_id>', views.tage_haye_factor, name='tage_factor'),
+
 ]

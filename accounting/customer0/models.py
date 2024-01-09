@@ -6,9 +6,9 @@ from django.db import models
 
 
 class Client(models.Model):
-    name = models.CharField(max_length=50)
-    national_code = models.CharField(max_length=16, blank =True, null = True)
-    phonr_number = models.CharField(max_length=16)
+    name = models.CharField(max_length=50, unique=True)
+    national_code = models.CharField(max_length=16, blank =True, null = True, unique=True)
+    phonr_number = models.CharField(max_length=16, unique=True)
     address = models.TextField()
     creditـlimit = models.CharField(max_length=16)
 
@@ -31,7 +31,7 @@ class Recipient(models.Model):
         Hogogi = 'hogogi'
 
     real_or_lega_nationality = models.CharField(max_length=16, choices =Nationa_code_type)
-    national_code = models.CharField(max_length=16, blank =True, null = True)
+    national_code = models.CharField(max_length=16, blank =True, null = True, unique=True)
 
     class Meta:
         ordering = ['-name', ]
