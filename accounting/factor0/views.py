@@ -8,7 +8,7 @@ from django.db.models import Q
 def kole_factor_ha(request):
 
     factors = Invoice.objects.all()
-    last_factor = factors.order_by("-id")[0].factor_number + 1
+    last_factor = factors.order_by("-id")[0].invoice_number + 1
     content = ({'factors': factors, 'last_factor':last_factor, })
     return render(request, 'factor0/home.html', content)
 

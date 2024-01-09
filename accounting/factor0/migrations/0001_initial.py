@@ -32,17 +32,17 @@ class Migration(migrations.Migration):
             name='Invoice',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('factor_number', models.IntegerField(blank=True, default=2000, null=True)),
-                ('geymat', models.DecimalField(decimal_places=3, default=240, max_digits=6, null=True)),
+                ('invoice_number', models.IntegerField(blank=True, default=2000, null=True)),
+                ('amount', models.DecimalField(decimal_places=3, default=240, max_digits=6, null=True)),
                 ('selling_date', models.DateField(auto_now_add=True)),
                 ('updated', models.DateField(auto_now=True)),
-                ('daryafti', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='chek0.received')),
+                ('received', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='chek0.received')),
                 ('client', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='customer0.client')),
                 ('roll', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='factor0.roll')),
             ],
             options={
                 'verbose_name_plural': 'Invoices',
-                'ordering': ['-factor_number'],
+                'ordering': ['-invoice_number'],
             },
         ),
     ]

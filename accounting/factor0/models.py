@@ -16,12 +16,12 @@ class Roll(models.Model):
         return str(self.weight)
 
 class Invoice(models.Model):
-    factor_number = models.IntegerField(blank=True, null=True, default=2000)
+    invoice_number = models.IntegerField(blank=True, null=True, default=2000)
     client = models.ForeignKey(Client, on_delete=models.SET_NULL, null=True)
-    geymat = models.DecimalField(max_digits=6, decimal_places=3, null=True, default=240)
+    amount = models.DecimalField(max_digits=6, decimal_places=3, null=True, default=240)
     roll = models.ManyToManyField(Roll, null=True)
 
-    daryafti = models.ForeignKey(Received, on_delete=models.SET_NULL, blank=True, null=True)
+    received = models.ForeignKey(Received, on_delete=models.SET_NULL, blank=True, null=True)
 
     selling_date = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
@@ -40,9 +40,9 @@ class Invoice(models.Model):
     def total_price(self):
         if self.roll.exists():
             if self.roll.filter(material__in=['nil', 'bangal']).exists():
-                total_pricee = sum(roll.weight * (self.geymat or 0) for roll in self.roll.all())
+                total_pricee = sum(roll.weight * (self.amount or 0) for roll in self.roll.all())
             else:
-                total_pricee = sum(roll.meter * (self.geymat or 0) for roll in self.roll.all())
+                total_pricee = sum(roll.meter * (self.amount or 0) for roll in self.roll.all())
         else:
             total_pricee = 0
         return total_pricee
@@ -50,7 +50,7 @@ class Invoice(models.Model):
 
     @property
     def notـreceived(self):
-        total_received = self.daryafti.tota_received if self.daryafti else 0
+        total_received = self.received.tota_received if self.received else 0
         remaining = self.total_price - total_received
         return remaining or 0
 
@@ -63,8 +63,8 @@ class Invoice(models.Model):
             return "baz"
 
     class Meta:
-        ordering = ['-factor_number', ]
+        ordering = ['-invoice_number', ]
         verbose_name_plural = "Invoices"
 
     def __str__(self) -> str:
-        return str(self.id) + '--' + str(self.factor_number) + '--' + str(self.client)
+        return str(self.id) + '--' + str(self.invoice_number) + '--' + str(self.client)
