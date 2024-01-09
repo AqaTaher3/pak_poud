@@ -10,6 +10,7 @@ def kole_chek_ha(request):
 
     chek_ha = Czech.objects.all()
     chek_count = len(chek_ha)
+
     # chek_count = Client.objects.count()
     content = ({'chek_ha': chek_ha, 'chek_count':chek_count})
     return render(request, 'chek0/home.html', content)

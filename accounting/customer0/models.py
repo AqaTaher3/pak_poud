@@ -14,7 +14,7 @@ class Client(models.Model):
 
     class Meta:
         ordering = ['name', ]
-        verbose_name_plural = "Moshtari_ha"
+        verbose_name_plural = "Clients"
 
     def __str__(self) -> str:
         return self.name[0:50]
@@ -23,7 +23,7 @@ class Client(models.Model):
         "Returns the person's full name."
         return f"{self.name} {self.last_name}"
 
-class Transferee(models.Model):
+class Recipient(models.Model):
     name = models.CharField(max_length=50)
 
     class Nationa_code_type(models.TextChoices):
@@ -35,7 +35,7 @@ class Transferee(models.Model):
 
     class Meta:
         ordering = ['-name', ]
-        verbose_name_plural = "Zinaf_ha"
+        verbose_name_plural = "Recipients"
 
     def __str__(self) -> str:
         return self.name[0:50]

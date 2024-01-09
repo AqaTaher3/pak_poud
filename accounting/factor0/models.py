@@ -10,7 +10,7 @@ class Roll(models.Model):
 
     class Meta:
         ordering = ['-material', '-weight', '-meter', ]
-        verbose_name_plural = "rolls_ha"
+        verbose_name_plural = "Rolls"
 
     def __str__(self) -> str:
         return str(self.weight)

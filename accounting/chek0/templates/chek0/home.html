@@ -11,12 +11,13 @@
         <th scope="col">phonr_number-sayad </th>
         <th scope="col">dueـdate</th>
         <th scope="col">amount</th>
-        <th scope="col">chek_owner_national_code?</th>
+        <th scope="col">national_code?</th>
         <th scope="col">destination</th>
         <th scope="col">dueـdate</th>
         <th scope="col">holder</th>
       </tr>
     </thead>
+
     <tbody>
 
         {% for chek in chek_ha %}
@@ -27,7 +28,7 @@
             <td><a href = "{% url 'chek:profile' chek.id %}"> {{chek.sayad}} </a> </td>
             <td>@{{chek.dueـdate}}</td>
             <td>{{chek.amount}}</td>
-            <td>{{chek.chek_owner_national_code}}</td>
+            <td>{{chek.national_code}}</td>
             <td>{{chek.destination}}</td>
             <td>{{chek.dueـdate}}</td>
             <td>{{chek.holder}}</td>

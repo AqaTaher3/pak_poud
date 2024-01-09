@@ -5,11 +5,12 @@ from django.db.models import Q
 from .forms import CreateClientForm
 
 
-def kole_customer_ha(request):
+def customer_home(request):
 
     customers = Client.objects.all()
-    customer_count = len(customers)
-    content = ({'customers': customers, 'customer_count':customer_count})
+    customers_count = len(customers)
+
+    content = ({'customers': customers, 'customer_count':customers_count})
     return render(request, 'customer0/home.html', content)
 
 # holder is Not blank

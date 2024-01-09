@@ -7,7 +7,7 @@ class Czech(models.Model):
     sayad = models.CharField(max_length=16)
     dueـdate = models.CharField(max_length=15)
     amount = models.CharField(max_length=20)
-    chek_owner_national_code = models.CharField(max_length=20)
+    national_code = models.CharField(max_length=20)
     destination = models.CharField(max_length=100, null=True, blank=True)
     dueـdate = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
