@@ -19,6 +19,7 @@ def kole_chek_ha(request):
 
 def chek_profile(request, id):
     chek = get_object_or_404(Czech, id=id)
+
     content = {'chek':chek}
     return render(request, 'chek0/profile.html', content)
 

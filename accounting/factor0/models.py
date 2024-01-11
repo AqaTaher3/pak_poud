@@ -1,17 +1,21 @@
 from django.db import models
 from customer0.models import Client
 from chek0.models import Czech, Received
+from django.urls import reverse
 
 class Roll(models.Model):
     material = models.CharField(max_length=16, default='nil-bangal')
     dyeing = models.CharField(max_length=30, default='sooper_derakhshan')
-    weight = models.IntegerField(blank=True, null=True)
+    weight = models.FloatField(blank=True, null=True)
     meter = models.IntegerField(null=True, default=120)
     used_in_invoice = models.BooleanField(default=False, null=True)
 
     class Meta:
         ordering = ['-material', '-weight', '-meter', ]
         verbose_name_plural = "Rolls"
+
+    def get_absolute_url(self):
+        return reverse("factor:update", kwargs={"pk": self.pk})
 
     def __str__(self) -> str:
         return str(self.weight)
@@ -24,7 +28,6 @@ class Invoice(models.Model):
     received = models.ForeignKey(Received, on_delete=models.SET_NULL, blank=True, null=True)
     selling_date = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
-    remaining=models.IntegerField(null=True, blank=True)
 
 
     @property
@@ -61,7 +64,6 @@ class Invoice(models.Model):
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-        self.remaining=self.not_received
         self.roll.update(used_in_invoice=True)
 
     class Meta:

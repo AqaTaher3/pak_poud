@@ -12,5 +12,5 @@ class CreateInvoiceForm(ModelForm):
 
 class CreateRollForm(ModelForm):
     class Meta:
-        model = Invoice
+        model = Roll
         fields = '__all__'

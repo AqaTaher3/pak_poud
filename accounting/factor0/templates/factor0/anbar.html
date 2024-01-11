@@ -1,0 +1,24 @@
+{% extends 'main.html' %}
+{% block content %}
+
+{% comment %} {% endcomment %}
+
+<a href="{% url 'factor:create_tage' %}"> create new tage </a>
+
+
+
+
+
+
+<hr><hr>
+
+{% for tage in tage_ha %}
+
+weight -- {{ tage.weight }} <hr>
+
+
+{% endfor %}
+
+
+
+{% endblock content %}

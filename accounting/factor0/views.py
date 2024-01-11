@@ -7,22 +7,7 @@ from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.http import HttpResponseRedirect
-
 from django.views.generic.edit import CreateView, UpdateView
-
-
-class RollCreateView(CreateView):
-    model = Roll
-    form_class = CreateRollForm
-    template_name = 'app1/model1_form.html'
-    success_url = '/app1/model1/'
-
-class RollUpdateView(UpdateView):
-    model = Roll
-    form_class = CreateRollForm
-    template_name = 'app1/model1_form.html'
-    success_url = '/app1/model1/'
-
 
 
 def kole_factor_ha(request):
@@ -57,6 +42,11 @@ def create_factor(request):
         context = {'form': form}
         return render(request, 'create.html', context)
 
+class InvoiceUpdateView(UpdateView):
+    model = Invoice
+    form_class = CreateInvoiceForm
+    template_name = 'update.html'
+    success_url = 'factor:home'
 
 
 def update_factor(request, id):
@@ -76,7 +66,6 @@ def update_factor(request, id):
         return render(request, "update.html", context)
 
 
-
 def delete_factor(request, id):
     factor = Invoice.objects.get(id=id)
     if request.method == 'POST':
@@ -90,3 +79,17 @@ def tage_haye_factor(request, factor_id):
     tage_ha = factors.roll.all()
     context = {'tage_ha':tage_ha}
     return render(request, 'factor0/tegefactor.html', context)
+
+
+def mojoodi_anbar(request):
+
+    tage_ha = Roll.objects.all()
+
+    content = ({'tage_ha':tage_ha,  })
+    return render(request, 'factor0/anbar.html', content)
+
+class RollCreateView(CreateView):
+    model = Roll
+    form_class = CreateRollForm
+    template_name = 'create.html'
+    success_url = 'factor:anbar'
