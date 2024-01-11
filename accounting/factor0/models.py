@@ -5,8 +5,8 @@ from chek0.models import Czech, Received
 class Roll(models.Model):
     material = models.CharField(max_length=16, default='nil-bangal')
     dyeing = models.CharField(max_length=30, default='sooper_derakhshan')
-    weight = models.DecimalField(max_digits=6, decimal_places=3, blank=True, null=True)
-    meter = models.DecimalField(max_digits=6, decimal_places=3, null=True, default=120)
+    weight = models.IntegerField(blank=True, null=True)
+    meter = models.IntegerField(null=True, default=120)
     used_in_invoice = models.BooleanField(default=False, null=True)
 
     class Meta:
@@ -19,11 +19,13 @@ class Roll(models.Model):
 class Invoice(models.Model):
     invoice_number = models.IntegerField(blank=True, null=True, default=2000, unique=True)
     client = models.ForeignKey(Client, on_delete=models.SET_NULL, null=True)
-    amount = models.DecimalField(max_digits=6, decimal_places=3, null=True, default=240)
+    amount = models.IntegerField(null=True, default=240)
     roll = models.ManyToManyField(Roll)
     received = models.ForeignKey(Received, on_delete=models.SET_NULL, blank=True, null=True)
     selling_date = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
+    remaining=models.IntegerField(null=True, blank=True)
+
 
     @property
     def total_weight(self):
@@ -59,6 +61,7 @@ class Invoice(models.Model):
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
+        self.remaining=self.not_received
         self.roll.update(used_in_invoice=True)
 
     class Meta:

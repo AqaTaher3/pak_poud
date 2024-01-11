@@ -27,10 +27,9 @@ class RollUpdateView(UpdateView):
 def kole_factor_ha(request):
 
     factors = Invoice.objects.all()
-    factors = Invoice.objects.all()
     # last_factor = factors.order_by("-id")[0].invoice_number + 1
     last_factor = 000
-    content = ({'factors': factors, 'last_factor':last_factor, })
+    content = ({'factors': factors, 'last_factor':last_factor,})
     return render(request, 'factor0/home.html', content)
 
 # 'factor_haye_baz':factor_haye_baz
