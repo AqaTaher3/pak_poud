@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Invoice, Roll
+from customer0.models import Client
 from .forms import CreateInvoiceForm, CreateRollForm
 from django.db.models import Q
 
@@ -26,10 +27,10 @@ class RollUpdateView(UpdateView):
 
 def kole_factor_ha(request):
 
-    factors = Invoice.objects.all()
-    # last_factor = factors.order_by("-id")[0].invoice_number + 1
-    last_factor = 000
-    content = ({'factors': factors, 'last_factor':last_factor,})
+    factor_ha = Invoice.objects.all()
+    q_factor = request.GET.get("q_factor") if request.GET.get("q_factor") else ''
+    factors = factor_ha.filter(Q(invoice_number__icontains=q_factor)|Q(client__name__icontains=q_factor))
+    content = ({'factors': factors })
     return render(request, 'factor0/home.html', content)
 
 # 'factor_haye_baz':factor_haye_baz

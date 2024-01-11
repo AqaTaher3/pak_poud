@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from customer0.models import Client
-from factor0.models import Invoice
 from .models import Czech
 from .forms import CreateCzechForm
 from customer0.models import Client
+from factor0.models import Invoice
 from django.db.models import Q
 
 
@@ -11,15 +10,16 @@ def kole_chek_ha(request):
 
     chek_ha = Czech.objects.all()
     chek_count = len(chek_ha)
+    q_chek = request.GET.get('q_chek') if request.GET.get('q_chek') else ''
+    cheks = chek_ha.filter(Q(sayad__icontains=q_chek)|Q(chec_bearer__name__icontains=q_chek))
 
-    # chek_count = Client.objects.count()
-    content = ({'chek_ha': chek_ha, 'chek_count':chek_count})
+    content = ({'chek_ha':cheks, 'chek_count':chek_count})
     return render(request, 'chek0/home.html', content)
 
 
 def chek_profile(request, id):
     chek = get_object_or_404(Czech, id=id)
-    content = {'chek': chek}
+    content = {'chek':chek}
     return render(request, 'chek0/profile.html', content)
 
 
@@ -29,12 +29,12 @@ def create_chek(request):
         if form.is_valid():
             form.save()
             return redirect('chek:home')
-        context = {'form': form}
+        context = {'form':form}
         return render(request, 'create.html', context)
 
     else:
         form = CreateCzechForm()
-        return render(request, "create.html", {"form": form})
+        return render(request, "create.html", {"form":form})
 
 
 def update_chek(request, id):
@@ -49,7 +49,7 @@ def update_chek(request, id):
 
     else:
         form = CreateCzechForm(instance=chek)
-        context = {'form': form}
+        context = {'form':form}
         CreateCzechForm(instance=chek)
         return render(request, "update.html", context)
 

@@ -1,12 +1,57 @@
-<form class="d-flex" role="search">
+<style>
+.container {
+    width: 100%;
+  }
 
-    {% if request.path|slice:"9" == "/customer" %}
-        <input type="text" name="customer_name" placeholder="Search customer name ...">
-    {% elif request.path|slice:"5" == "/chek" %}
-        <input type="text" name="phonr_number_check_book" placeholder="phonr_number sayad ...">
-        <input type="text" name="sayad" placeholder="Search dueـdate ...">
-        <input type="text" name="phonr_number_check_book" placeholder="phonr_number to check_book ...">
-    {% elif request.path|slice:"7" == "/factor" %}
-        <input type="text" name="invoice_number" placeholder="Search phonr_number factor ...">
-    {% endif %}
+  .column1 {
+    float: left;
+    width: 50%;
+  }
+
+  .column2 {
+    float: left;
+    width: 50%;
+  }
+</style>
+
+{% if request.path|slice:"9" == "/customer" %}
+    <form class="d-flex" role="search" method="GET" action="/customer/home" >
+        <label for="your_name">Your name: </label>
+        <input class="form-control me-2" type="texr" name="q_customer"  placeholder="Search customer ..." aria-label="Search" >
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+
+
+{% elif request.path|slice:"5" == "/chek" %}
+{% comment %}
+    <!-- <div class = "container">
+        <div class = "column1">
+            <form class="d-flex" role="search" method="GET" action="/chek/home" >
+                <button class="btn btn-outline-success" type="submit">Search</button>
+                <input class="form-control me-2" type="texr" name="q_factor"
+                placeholder="Search shomare daftare chek.." aria-label="Search" >
+            </form>
+        </div>
+        <div class = "column2">
+            <form class="d-flex" role="search" method="GET" action="/chek/home" >
+                <button class="btn btn-outline-success" type="submit">Search</button>
+                <input class="form-control me-2" type="texr" name="q_factor"
+                placeholder="Search saheb chek ..." aria-label="Search" >
+            </form>
+        </div>
+
+    </div> -->
+{% endcomment %}
+
+<form class="d-flex" role="search" method="GET" action="/chek/home" >
+    <button class="btn btn-outline-success" type="submit">Search</button>
+    <input class="form-control me-2" type="texr" name="q_chek"
+    placeholder="Search shomare sayad ... " aria-label="Search" >
 </form>
+{% elif request.path|slice:"7" == "/factor" %}
+    <form class="d-flex" role="search" method="GET" action="/factor/home" >
+        <button class="btn btn-outline-success" type="submit">Search</button>
+        <input class="form-control me-2" type="texr" name="q_factor"
+        placeholder="Search shomare factor -----ya----- name moshtari..." aria-label="Search" >
+    </form>
+{% endif %}

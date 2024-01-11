@@ -9,8 +9,9 @@ def customer_home(request):
 
     customers = Client.objects.all()
     customers_count = len(customers)
-
-    content = ({'customers': customers, 'customer_count':customers_count})
+    q_customer = request.GET.get('q_customer') if request.GET.get('q_customer') != None else ""
+    clients = customers.filter(name__icontains=q_customer)
+    content = ({'customers': clients, 'customer_count':customers_count})
     return render(request, 'customer0/home.html', content)
 
 # holder is Not blank

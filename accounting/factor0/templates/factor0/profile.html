@@ -5,21 +5,21 @@
 <br><br>
 
 <h3>
-phonr_number_id : {{factor.id}} <hr>
-invoice_number : {{factor.invoice_number}} <hr>
-client : {{factor.client}}<hr>
-tage_ha : <a href ="{% url 'factor:tage_factor'  factor.id %}">
+phonr_number_id:{{factor.id}} <hr>
+invoice_number:{{factor.invoice_number}} <hr>
+client:{{factor.client}}<hr>
+tage_ha:<a href ="{% url 'factor:tage_factor'  factor.id %}">
 
             {% for roll in factor.roll.all %}
             <br/>{{ roll }}
             {% endfor %}
 
           </a> <br><hr>
-selling_date : {{factor.selling_date}}<hr>
-total : {{factor.total_price}}<hr>
-updated : {{factor.updated}}<hr>
-total_price : {{factor.total_price}}<hr>
-total_received : {{factor.received.total_received}}<hr>
+selling_date:{{factor.selling_date}}<hr>
+total:{{factor.total_price}}<hr>
+updated:{{factor.updated}}<hr>
+total_price:{{factor.total_price}}<hr>
+total_received:{{factor.received.total_received}}<hr>
 
 </h3>
 

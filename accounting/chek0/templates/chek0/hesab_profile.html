@@ -15,34 +15,34 @@
 </style>
 
 
-hesab_id : {{hesab_id}} <br>
+hesab_id:{{hesab_id}} <br>
 <h1 id = "page">
-    hesab haye daryaft shode baraye factor be shomare : {{factor.invoice_number}}
+    hesab haye daryaft shode baraye factor be shomare:{{factor.invoice_number}}
 </h1>
 
 <h2>
-kharidar : {{factor.client}} <br>
-kole_daryafti : {{kole_daryafti}} <br>
-cash : {{cash}} <br>
-date : {{date}} <br>
-updated : {{updated}} <br>
+kharidar:{{factor.client}} <br>
+kole_daryafti:{{kole_daryafti}} <br>
+cash:{{cash}} <br>
+date:{{date}} <br>
+updated:{{updated}} <br>
 </h2><hr>
 
 
-<h1 id="chek"> chek_ha : </h1>
+<h1 id="chek"> chek_ha:</h1>
 
 
 {% for chek in cheks %}<br>
 <div class="customer">
-    id : {{chek.id}} <br>
-    tahvih dahande : <a href="{% url 'customer:profile' chek.chec_bearer.id %}">{{chek.chec_bearer}}</a> <br>
-    check_book  : {{chek.check_book}}<br>
-    amount  : {{chek.amount}} <br>
-    sayad  : <a href="{% url 'chek:profile' chek.id %}">{{chek.sayad}}</a> <br>
-    destination : (sherkat/shakhs) {{chek.destination}}<br>
-    dueـdate : {{chek.dueـdate}}<br>
-    updated : {{chek.updated}}<br>
-    holder : {{chek.holder}}<br><hr>
+    id:{{chek.id}} <br>
+    tahvih dahande:<a href="{% url 'customer:profile' chek.chec_bearer.id %}">{{chek.chec_bearer}}</a> <br>
+    check_book :{{chek.check_book}}<br>
+    amount :{{chek.amount}} <br>
+    sayad :<a href="{% url 'chek:profile' chek.id %}">{{chek.sayad}}</a> <br>
+    destination:(sherkat/shakhs) {{chek.destination}}<br>
+    dueـdate:{{chek.dueـdate}}<br>
+    updated:{{chek.updated}}<br>
+    holder:{{chek.holder}}<br><hr>
 
 </div>
 {% endfor %}
